@@ -208,20 +208,23 @@
             font-size: 1rem;
         }
 
+        /* 改動處：使用 stretch 讓左右高度一致 */
         .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: stretch; 
             margin-bottom: 20px;
             gap: 30px;
         }
 
-        /* 再次放大 1.5 倍: 330px * 1.5 = 495px */
+        /* 改動處：高度設為 100% 契合外框，維持靠右 */
         .card-logo {
-            width: 495px; 
-            max-height: 200px;
             height: auto;
+            max-height: 100%; /* 確保不超過文字區塊高度 */
+            max-width: 495px; /* 維持你要求的超大寬度上限 */
             object-fit: contain;
+            object-position: right center;
+            align-self: center; /* 垂直居中 */
         }
 
         .project-img {
@@ -314,7 +317,7 @@
         @media (max-width: 850px) {
             .card-header { flex-direction: column; align-items: flex-start; }
             .project-img { max-width: 100%; order: -1; }
-            .card-logo { width: 100%; max-width: 400px; }
+            .card-logo { width: 100%; max-width: 400px; object-position: left; }
         }
 
         @media (max-width: 768px) {
