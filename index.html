@@ -25,6 +25,14 @@
             --border-color: #d0d7de;
         }
 
+        /* Fix for cut-off content */
+        html, body {
+            height: auto !important;
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -40,7 +48,6 @@
             background-color: #f6f8fa;
             color: var(--text-main);
             line-height: 1.5;
-            padding-bottom: 0; /* 移除底部間距，交給 footer 處理 */
         }
 
         .top-bar {
@@ -82,7 +89,7 @@
         .container {
             max-width: 950px;
             margin: 0 auto;
-            padding: 40px 25px;
+            padding: 40px 25px 80px 25px; /* Bottom padding ensures space for footer */
         }
 
         header {
@@ -94,6 +101,7 @@
             gap: 50px;
         }
 
+        /* 220px Profile Pic + Industrial Frame */
         .profile-pic {
             width: 220px;
             height: 220px;
@@ -244,10 +252,11 @@
             gap: 30px;
         }
 
+        /* 495px Logo standard */
         .card-logo {
             height: 100px;
             width: auto;
-            max-width: 300px;
+            max-width: 495px;
             object-fit: contain;
             object-position: right center;
         }
@@ -302,6 +311,7 @@
             text-align: justify;
         }
 
+        /* Blue Arrows */
         .card-content ul > li::before {
             content: "→";
             position: absolute;
@@ -310,6 +320,7 @@
             font-weight: bold;
         }
 
+        /* Remove arrows from technical zones */
         .card-content ol li {
             padding-left: 0;
             margin-bottom: 5px;
@@ -341,14 +352,17 @@
             font-size: 0.95rem;
         }
 
-        /* Footer 樣式 */
+        /* Footer Visibility Fix */
         footer {
+            display: block;
+            clear: both;
             text-align: center;
-            padding: 40px 0;
+            padding: 60px 0;
             background-color: #f1f3f5;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             border-top: 1px solid var(--border-color);
+            width: 100%;
         }
 
         @media (max-width: 850px) {
@@ -413,7 +427,7 @@
                     <span class="tag">Microsoft Office</span>
                 </div>
             </div>
-            <div class="skill-category">
+            <div class="skill-category" style="margin-top: 20px;">
                 <h3>Soft Skills</h3>
                 <div class="tags">
                     <span class="tag">Problem-Solving</span>
@@ -422,7 +436,7 @@
                     <span class="tag">Cross-functional Collaboration</span>
                 </div>
             </div>
-            <div class="skill-category">
+            <div class="skill-category" style="margin-top: 20px;">
                 <h3>Languages</h3>
                 <div class="tags">
                     <span class="tag">Mandarin</span>
@@ -552,7 +566,6 @@
     </section>
 </div>
 
-<!-- 頁尾版權宣告 -->
 <footer>
     &copy; 2026 Tzu-Chun Huang. All rights reserved.
 </footer>
