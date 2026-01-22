@@ -274,12 +274,23 @@
             text-align: justify;
         }
 
-        .card-content ul li::before {
+        /* Blue arrow selector limited to main list only */
+        .card-content ul > li::before {
             content: "→";
             position: absolute;
             left: 0;
             color: var(--accent-blue);
             font-weight: bold;
+        }
+
+        /* Specifically remove arrow from nested ordered list items */
+        .card-content ol li {
+            padding-left: 0;
+            margin-bottom: 5px;
+        }
+
+        .card-content ol li::before {
+            content: none !important;
         }
 
         .badge {
