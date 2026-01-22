@@ -211,14 +211,13 @@
         .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: center; /* Centered logos with text */
+            align-items: center;
             margin-bottom: 20px;
             gap: 30px;
         }
 
-        /* Standardized Logo Sizing for UW and NSYSU */
         .card-logo {
-            max-width: 220px; /* Increased to accommodate UW logo better */
+            max-width: 220px;
             max-height: 120px;
             width: auto;
             height: auto;
@@ -282,6 +281,17 @@
             left: 0;
             color: var(--accent-blue);
             font-weight: bold;
+        }
+
+        /* Sub-bullets for nested lists */
+        .card-content ul li ul {
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+        
+        .card-content ul li ul li::before {
+            content: "•";
+            color: var(--text-light);
         }
 
         .badge {
@@ -461,7 +471,16 @@
             </div>
             <div class="card-content">
                 <ul>
-                    <li>Designed a microfluidic device to test the hypothesis that quorum sensing behavior can be observed in small populations when confined within limited volumes.</li>
+                    <li>Designed a microfluidic device divided into four functional zones:
+                        <ul>
+                            <li>Droplet generation – flow-focusing method</li>
+                            <li>Mixing / Fusion – pillar-induced fusion</li>
+                            <li>Incubation – delay-line channels</li>
+                            <li>Detection – fluorescence measurement at outlet</li>
+                        </ul>
+                    </li>
+                    <li>Selected optimal design methods for each zone, supported by literature research.</li>
+                    <li>Applied systematic design principles to ensure functionality, efficiency, and reproducibility.</li>
                 </ul>
             </div>
         </div>
