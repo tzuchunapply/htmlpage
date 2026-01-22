@@ -24,6 +24,10 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: #f6f8fa;
             color: var(--text-main);
@@ -37,17 +41,65 @@
             background: var(--primary-dark);
         }
 
+        /* Navigation Tabs */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--primary-dark);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-container a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 18px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-container a:hover {
+            background: var(--accent-blue);
+        }
+
         .container {
             max-width: 950px;
             margin: 0 auto;
-            padding: 60px 25px;
+            padding: 40px 25px;
         }
 
-        /* Header */
+        /* Header with Profile Pic */
         header {
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             border-bottom: 3px solid var(--primary-dark);
             padding-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border: 5px solid var(--white);
+            box-shadow: 5px 5px 0px var(--primary-dark);
+            background: #eee;
+        }
+
+        .header-text {
+            flex: 1;
         }
 
         h1 {
@@ -62,7 +114,7 @@
         .contact-info {
             display: flex;
             flex-wrap: wrap;
-            gap: 25px;
+            gap: 20px;
             font-size: 0.95rem;
             color: var(--text-main);
             font-weight: 500;
@@ -82,6 +134,7 @@
         /* Sections */
         section {
             margin-bottom: 60px;
+            scroll-margin-top: 80px;
         }
 
         h2 {
@@ -94,7 +147,7 @@
             color: var(--primary-dark);
         }
 
-        /* Skills Styles (From the first design) */
+        /* Skills Styles */
         .skill-section {
             background: #fff;
             padding: 30px;
@@ -125,10 +178,10 @@
             padding: 6px 14px;
             font-size: 0.85rem;
             font-weight: 500;
-            border-radius: 4px; /* Industrial sharper look */
+            border-radius: 4px;
         }
 
-        /* Card Styles (From the first design) */
+        /* Card Styles */
         .card {
             background: var(--white);
             border: 1px solid var(--border-color);
@@ -147,14 +200,21 @@
         .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 20px;
+            gap: 30px;
         }
 
         .card-logo {
-            max-width: 80px;
+            max-width: 180px;
+            max-height: 120px;
+            width: auto;
             height: auto;
-            
+            object-fit: contain;
+        }
+
+        .card-title-group {
+            flex: 1;
         }
 
         .card-title-group h3 {
@@ -176,9 +236,11 @@
             padding: 4px 10px;
             font-size: 0.85rem;
             font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            white-space: nowrap;
         }
 
-        /* List styling */
         .card-content ul {
             list-style: none;
             margin-top: 15px;
@@ -209,7 +271,7 @@
             font-weight: 800;
             font-size: 0.75rem;
             letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-transform: uppercase;
         }
 
@@ -222,10 +284,12 @@
         }
 
         @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; gap: 20px; }
             h1 { font-size: 2.5rem; }
-            .card-header { flex-direction: column; gap: 15px; }
-            .card-logo { order: -1; }
-            .date-box { align-self: flex-start; }
+            .contact-info { justify-content: center; }
+            .card-header { flex-direction: column; gap: 15px; align-items: flex-start; }
+            .card-logo { order: -1; max-width: 150px; }
+            .nav-container a { padding: 10px 10px; font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -233,13 +297,26 @@
 
 <div class="top-bar"></div>
 
+<nav>
+    <div class="nav-container">
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#work-experience">Work Experience</a>
+        <a href="#projects">Coursework Projects</a>
+        <a href="#extracurricular">Extracurricular Activities</a>
+    </div>
+</nav>
+
 <div class="container">
     <header>
-        <h1>Tzu-Chun Huang</h1>
-        <div class="contact-info">
-            <span><i class="fas fa-envelope"></i> tzuchunapply@gmail.com</span>
-            <span><i class="fas fa-phone"></i> +886 989 831 733</span>
-            <span><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/tzuchun-huang" target="_blank">LinkedIn</a></span>
+        <img src="assets/img/小尺寸照.jpg" alt="Tzu-Chun Huang" class="profile-pic">
+        <div class="header-text">
+            <h1>Tzu-Chun Huang</h1>
+            <div class="contact-info">
+                <span><i class="fas fa-envelope"></i> tzuchunapply@gmail.com</span>
+                <span><i class="fas fa-phone"></i> +886 989 831 733</span>
+                <span><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/tzuchun-huang" target="_blank">LinkedIn</a></span>
+            </div>
         </div>
     </header>
 
@@ -288,11 +365,9 @@
                     <h3>University of Washington</h3>
                     <div class="card-subtitle">Master of Science in Applied Chemical Science and Technology</div>
                     <p style="margin-top: 8px; font-weight: bold;">GPA: 3.53 / 4.0</p>
-                </div>
-                <div style="text-align: right;">
-                    <img src="assets/img/University-of-Washington-Logo.jpg" alt="UW" class="card-logo"><br>
                     <span class="date-box">Dec 2023 | Seattle, WA</span>
                 </div>
+                <img src="assets/img/University-of-Washington-Logo.jpg" alt="UW" class="card-logo">
             </div>
         </div>
 
@@ -301,11 +376,9 @@
                 <div class="card-title-group">
                     <h3>National Sun Yat-sen University</h3>
                     <div class="card-subtitle">Bachelor of Science in Chemistry</div>
-                </div>
-                <div style="text-align: right;">
-                    <img src="assets/img/中山.png" alt="NSYSU" class="card-logo"><br>
                     <span class="date-box">Jun 2021 | Kaohsiung, Taiwan</span>
                 </div>
+                <img src="assets/img/中山.png" alt="NSYSU" class="card-logo">
             </div>
         </div>
     </section>
@@ -318,11 +391,9 @@
                 <div class="card-title-group">
                     <h3>Precision Analytical</h3>
                     <div class="card-subtitle">Chemist</div>
-                </div>
-                <div style="text-align: right;">
-                    <img src="assets/img/PA.jpg" alt="PA" class="card-logo"><br>
                     <span class="date-box">Nov 2024 | McMinnville, OR</span>
                 </div>
+                <img src="assets/img/PA.jpg" alt="PA" class="card-logo">
             </div>
             <div class="card-content">
                 <ul>
@@ -368,19 +439,6 @@
                 </ul>
             </div>
         </div>
-
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title-group">
-                    <h3>Machine Learning with Materials Project Database</h3>
-                </div>
-            </div>
-            <div class="card-content">
-                <ul>
-                    <li>Utilized machine learning techniques to predict crystalline structures based on key chemical properties.</li>
-                </ul>
-            </div>
-        </div>
     </section>
 
     <section id="extracurricular">
@@ -404,5 +462,4 @@
 </div>
 
 </body>
-
 </html>
