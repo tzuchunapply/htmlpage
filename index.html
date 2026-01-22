@@ -92,10 +92,11 @@
         .profile-pic {
             width: 180px;
             height: 180px;
-            object-fit: cover;
+            object-fit: contain; /* Prevents cropping to preserve source detail */
+            image-rendering: -webkit-optimize-contrast; /* Keeps image sharp */
             border: 5px solid var(--white);
             box-shadow: 5px 5px 0px var(--primary-dark);
-            background: #eee;
+            background: #ffffff;
         }
 
         .header-text {
@@ -147,7 +148,7 @@
             color: var(--primary-dark);
         }
 
-        /* Skills Styles with HOVER EFFECT */
+        /* Skills Styles */
         .skill-section {
             background: #fff;
             padding: 30px;
@@ -181,10 +182,8 @@
             border-radius: 4px;
             transition: all 0.3s ease;
             cursor: default;
-            display: inline-block;
         }
 
-        /* HOVER EFFECT FOR SKILLS */
         .tag:hover {
             background: var(--accent-blue);
             transform: translateY(-3px);
@@ -215,7 +214,6 @@
             gap: 30px;
         }
 
-        /* Company Logos */
         .card-logo {
             max-width: 180px;
             max-height: 120px;
@@ -224,7 +222,6 @@
             object-fit: contain;
         }
 
-        /* Project Images */
         .project-img {
             max-width: 350px;
             width: 100%;
@@ -357,7 +354,7 @@
                     <span class="tag">Chromatography</span>
                     <span class="tag">Machine Learning</span>
                     <span class="tag">Python</span>
-                    <span class="tag">Lynx Automated Liquid Dispensing System</span>
+                    <span class="tag">Lynx</span>
                     <span class="tag">Microsoft Office</span>
                 </div>
             </div>
@@ -391,7 +388,7 @@
                     <p style="margin-top: 8px; font-weight: bold;">GPA: 3.53 / 4.0</p>
                     <span class="date-box">Dec 2023 | Seattle, WA</span>
                 </div>
-                <img src="assets/img/University-of-Washington-Logo.jpg" alt="UW" class="card-logo">
+                <img src="assets/img/UW.webp" alt="UW" class="card-logo">
             </div>
         </div>
 
