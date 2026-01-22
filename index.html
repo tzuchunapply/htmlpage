@@ -77,7 +77,6 @@
             padding: 40px 25px;
         }
 
-        /* 頭像與 Header 調整 */
         header {
             margin-bottom: 30px;
             border-bottom: 3px solid var(--primary-dark);
@@ -87,16 +86,15 @@
             gap: 50px;
         }
 
-        /* 新的頭像設計：更大且具有技術圖紙感的框 */
+        /* 放大版頭像 + 工業設計框 */
         .profile-pic {
-            width: 220px; /* 放大至 220px */
+            width: 220px;
             height: 220px;
             object-fit: cover;
             image-rendering: -webkit-optimize-contrast;
             border: 2px solid var(--primary-dark);
-            padding: 8px; /* 內部白邊 */
+            padding: 8px;
             background: var(--white);
-            /* 階梯式陰影：工業灰 + 品牌藍透明層 */
             box-shadow: 
                 8px 8px 0px var(--industrial-gray),
                 16px 16px 0px rgba(9, 105, 218, 0.1);
@@ -229,6 +227,7 @@
             gap: 30px;
         }
 
+        /* Logo 調整為 495px 並靠右對齊 */
         .card-logo {
             height: auto;
             max-height: 100%;
