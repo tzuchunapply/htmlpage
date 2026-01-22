@@ -29,7 +29,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* 使用 Calibri 字型 */
             font-family: 'Calibri', 'Candara', 'Segoe UI', 'Optima', 'Arial', sans-serif;
         }
 
@@ -41,7 +40,7 @@
             background-color: #f6f8fa;
             color: var(--text-main);
             line-height: 1.5;
-            padding-bottom: 80px;
+            padding-bottom: 0; /* 移除底部間距，交給 footer 處理 */
         }
 
         .top-bar {
@@ -95,7 +94,6 @@
             gap: 50px;
         }
 
-        /* 220px 放大版頭像 + 工業設計雙層框 */
         .profile-pic {
             width: 220px;
             height: 220px;
@@ -343,6 +341,16 @@
             font-size: 0.95rem;
         }
 
+        /* Footer 樣式 */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #f1f3f5;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+
         @media (max-width: 850px) {
             header { flex-direction: column; text-align: center; gap: 30px; }
             .profile-pic { width: 200px; height: 200px; }
@@ -543,6 +551,11 @@
         </div>
     </section>
 </div>
+
+<!-- 頁尾版權宣告 -->
+<footer>
+    &copy; 2026 Tzu-Chun Huang. All rights reserved.
+</footer>
 
 </body>
 </html>
