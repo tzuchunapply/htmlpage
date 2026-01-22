@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tzu-Chun Huang | Professional Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-dark: #1a1a1a;
             --secondary-dark: #2d2d2d;
             --accent-blue: #0969da;
-            --industrial-gray: #e0e0e0;
+            --industrial-gray: #f0f2f5;
             --text-main: #333333;
             --text-light: #666666;
             --white: #ffffff;
@@ -21,127 +22,148 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
             background-color: #f6f8fa;
             color: var(--text-main);
             line-height: 1.6;
-            padding-bottom: 80px;
         }
 
-        /* Top Accent Bar */
+        /* Top Bar & Nav */
         .top-bar {
-            height: 10px;
+            height: 8px;
             background: var(--primary-dark);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 8px;
+            z-index: 999;
+            text-align: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-blue);
         }
 
         .container {
-            max-width: 950px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 60px 25px;
+            padding: 40px 25px;
         }
 
         /* Header */
         header {
             margin-bottom: 50px;
-            border-bottom: 3px solid var(--primary-dark);
             padding-bottom: 30px;
+            border-bottom: 2px solid var(--primary-dark);
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             letter-spacing: -2px;
             text-transform: uppercase;
             color: var(--primary-dark);
-            margin-bottom: 15px;
-            line-height: 1;
+            margin-bottom: 10px;
+            line-height: 0.9;
         }
 
         .contact-info {
             display: flex;
             flex-wrap: wrap;
-            gap: 25px;
-            font-size: 0.95rem;
+            gap: 20px;
+            font-size: 0.9rem;
             color: var(--text-main);
-            font-weight: 500;
         }
 
         .contact-info a {
             color: var(--accent-blue);
             text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: 0.2s;
-        }
-
-        .contact-info a:hover {
-            border-bottom: 1px solid var(--accent-blue);
+            font-weight: 600;
         }
 
         /* Sections */
         section {
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
 
         h2 {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            border-left: 8px solid var(--primary-dark);
-            padding-left: 15px;
-            margin-bottom: 30px;
-            color: var(--primary-dark);
+            letter-spacing: 4px;
+            color: var(--white);
+            background: var(--primary-dark);
+            display: inline-block;
+            padding: 5px 20px;
+            margin-bottom: 35px;
         }
 
-        /* Skills Styles (From the first design) */
-        .skill-section {
-            background: #fff;
+        /* Skills */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            background: white;
             padding: 30px;
             border: 1px solid var(--border-color);
         }
 
-        .skill-category {
-            margin-bottom: 20px;
-        }
-
         .skill-category h3 {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            color: var(--text-light);
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            color: var(--accent-blue);
+            margin-bottom: 15px;
         }
 
         .tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
         .tag {
-            background: var(--secondary-dark);
-            color: var(--white);
-            padding: 6px 14px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border-radius: 4px; /* Industrial sharper look */
+            background: var(--industrial-gray);
+            color: var(--primary-dark);
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 3px;
+            border: 1px solid var(--border-color);
         }
 
-        /* Card Styles (From the first design) */
+        /* Cards */
         .card {
             background: var(--white);
             border: 1px solid var(--border-color);
-            padding: 35px;
-            margin-bottom: 25px;
-            position: relative;
-            transition: all 0.3s ease;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 12px 12px 0px rgba(26, 26, 26, 0.05);
-            border-color: var(--primary-dark);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-color: var(--accent-blue);
         }
 
         .card-header {
@@ -151,81 +173,100 @@
             margin-bottom: 20px;
         }
 
-        .card-logo {
-            max-width: 80px;
-            height: auto;
-            
-        }
-
         .card-title-group h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 800;
             color: var(--primary-dark);
         }
 
         .card-subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--accent-blue);
             font-weight: 600;
-            margin-top: 4px;
+            margin-top: 5px;
         }
 
         .date-box {
-            font-family: 'Courier New', monospace;
-            background: var(--industrial-gray);
-            padding: 4px 10px;
-            font-size: 0.85rem;
-            font-weight: bold;
+            font-family: monospace;
+            background: var(--primary-dark);
+            color: white;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            white-space: nowrap;
         }
 
-        /* List styling */
+        .card-logo-placeholder {
+            font-size: 2rem;
+            color: var(--border-color);
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .card-logo {
+            max-height: 50px;
+            width: auto;
+            margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+        }
+
+        /* Content */
         .card-content ul {
             list-style: none;
-            margin-top: 15px;
         }
 
         .card-content ul li {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             position: relative;
-            padding-left: 25px;
+            padding-left: 20px;
             font-size: 0.95rem;
             color: var(--text-main);
             text-align: justify;
         }
 
         .card-content ul li::before {
-            content: "→";
+            content: "■";
             position: absolute;
             left: 0;
+            top: 2px;
             color: var(--accent-blue);
-            font-weight: bold;
+            font-size: 0.7rem;
         }
 
         .badge {
-            display: inline-block;
-            background: #ffc107;
+            background: #ffd33d;
             color: #000;
-            padding: 3px 12px;
+            padding: 2px 10px;
             font-weight: 800;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
+            font-size: 0.7rem;
             text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 10px;
         }
 
-        em {
-            display: block;
-            margin-top: 15px;
+        .gpa {
+            font-size: 0.85rem;
+            font-weight: 700;
+            background: #e1f5fe;
+            color: #0288d1;
+            padding: 2px 8px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
             color: var(--text-light);
-            border-top: 1px solid var(--industrial-gray);
-            padding-top: 10px;
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .card-header { flex-direction: column; gap: 15px; }
-            .card-logo { order: -1; }
-            .date-box { align-self: flex-start; }
+            .card-header { flex-direction: column; }
+            .date-box { margin-top: 10px; align-self: flex-start; }
+            .card-logo { margin-left: 0; margin-top: 15px; }
+            nav { display: none; } /* Hide nav on mobile for clean look */
         }
     </style>
 </head>
@@ -233,65 +274,69 @@
 
 <div class="top-bar"></div>
 
+<nav>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#work-experience">Experience</a>
+    <a href="#projects">Projects</a>
+</nav>
+
 <div class="container">
     <header>
         <h1>Tzu-Chun Huang</h1>
         <div class="contact-info">
-            <span><i class="fas fa-envelope"></i> tzuchunapply@gmail.com</span>
+            <span><i class="fas fa-envelope"></i> <a href="mailto:tzuchunapply@gmail.com">tzuchunapply@gmail.com</a></span>
             <span><i class="fas fa-phone"></i> +886 989 831 733</span>
-            <span><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/tzuchun-huang" target="_blank">LinkedIn</a></span>
+            <span><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/tzuchun-huang" target="_blank">LinkedIn Profile</a></span>
         </div>
     </header>
 
     <section id="skills">
-        <h2>SKILLS</h2>
-        <div class="skill-section">
+        <h2>Technical Arsenal</h2>
+        <div class="skill-grid">
             <div class="skill-category">
-                <h3>Technical Skills</h3>
+                <h3>Lab & Analysis</h3>
                 <div class="tags">
                     <span class="tag">Analytical Chemistry</span>
                     <span class="tag">Quality Control (SPC)</span>
-                    <span class="tag">Six Sigma</span>
                     <span class="tag">UV-Vis Spectroscopy</span>
                     <span class="tag">Chromatography</span>
-                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Liquid Dispensing</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Data & Systems</h3>
+                <div class="tags">
                     <span class="tag">Python</span>
-                    <span class="tag">Lynx Automated Liquid Dispensing System</span>
-                    <span class="tag">Microsoft Office</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Six Sigma</span>
+                    <span class="tag">Azure ML</span>
                 </div>
             </div>
             <div class="skill-category">
-                <h3>Soft Skills</h3>
+                <h3>Core Strengths</h3>
                 <div class="tags">
-                    <span class="tag">Problem-Solving</span>
-                    <span class="tag">Adaptability</span>
-                    <span class="tag">Quick Learning</span>
+                    <span class="tag">Problem Solving</span>
                     <span class="tag">Cross-functional Collaboration</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3>Languages</h3>
-                <div class="tags">
-                    <span class="tag">Mandarin</span>
-                    <span class="tag">English</span>
+                    <span class="tag">English & Mandarin</span>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="education">
-        <h2>EDUCATION</h2>
+        <h2>Education</h2>
         
         <div class="card">
             <div class="card-header">
                 <div class="card-title-group">
                     <h3>University of Washington</h3>
                     <div class="card-subtitle">Master of Science in Applied Chemical Science and Technology</div>
-                    <p style="margin-top: 8px; font-weight: bold;">GPA: 3.53 / 4.0</p>
+                    <span class="gpa">GPA: 3.53 / 4.0</span>
                 </div>
                 <div style="text-align: right;">
-                    <img src="assets/img/University-of-Washington-Logo.jpg" alt="UW" class="card-logo"><br>
-                    <span class="date-box">Dec 2023 | Seattle, WA</span>
+                    <i class="fas fa-university card-logo-placeholder"></i><br>
+                    <span class="date-box">DEC 2023 | SEATTLE, WA</span>
                 </div>
             </div>
         </div>
@@ -303,15 +348,15 @@
                     <div class="card-subtitle">Bachelor of Science in Chemistry</div>
                 </div>
                 <div style="text-align: right;">
-                    <img src="assets/img/中山.png" alt="NSYSU" class="card-logo"><br>
-                    <span class="date-box">Jun 2021 | Kaohsiung, Taiwan</span>
+                    <i class="fas fa-graduation-cap card-logo-placeholder"></i><br>
+                    <span class="date-box">JUN 2021 | KAOHSIUNG, TAIWAN</span>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="work-experience">
-        <h2>WORK EXPERIENCE</h2>
+        <h2>Professional Experience</h2>
         
         <div class="card">
             <div class="card-header">
@@ -320,37 +365,36 @@
                     <div class="card-subtitle">Chemist</div>
                 </div>
                 <div style="text-align: right;">
-                    <img src="assets/img/PA.jpg" alt="PA" class="card-logo"><br>
-                    <span class="date-box">Nov 2024 | McMinnville, OR</span>
+                    <i class="fas fa-flask card-logo-placeholder"></i><br>
+                    <span class="date-box">NOV 2024 | MCMINNVILLE, OR</span>
                 </div>
             </div>
             <div class="card-content">
                 <ul>
-                    <li>Quantified creatinine using UV-Vis spectroscopy to normalize urine concentration and performed replicate measurements for routine quality control. Used reference samples and <strong>statistical control limits</strong> (conceptually similar to SPC) to monitor variation and identify abnormal results, supporting efficient and consistent sample processing workflows.</li>
-                    <li>Applied <strong>Six Sigma</strong> methodology to investigate significant deviation in patient urine creatinine measurements; analyzed potential causes including sample handling, reagent preparation, and laboratory environment, identified elevated temperature as the primary factor affecting reaction kinetics, implemented SOP improvements to standardize temperature equilibration prior to UV-Vis analysis, and restored consistent measurement performance.</li>
-                    <li>Operated the Lynx automated liquid dispensing system and C18 column-based extraction process for high-throughput hormone analysis (androgen, estrogen, progesterone), strictly adhering to <strong>SOPs</strong> to ensure process repeatability and data consistency across urine and saliva samples.</li>
-                    <li>Performed methanol recycling to reduce chemical waste and operational costs.</li>
+                    <li><strong>Quality Control:</strong> Quantified creatinine using UV-Vis spectroscopy and used statistical control limits to monitor variation, ensuring high-accuracy sample processing.</li>
+                    <li><strong>Process Improvement:</strong> Applied Six Sigma methodology to solve measurement deviations; identified temperature as the critical variable and standardized SOPs to restore performance.</li>
+                    <li><strong>Automation:</strong> Operated Lynx automated liquid dispensing systems for high-throughput hormone analysis, maintaining strict adherence to SOPs for data consistency.</li>
+                    <li><strong>Sustainability:</strong> Managed methanol recycling protocols to reduce chemical waste and laboratory operational costs.</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="projects">
-        <h2>COURSEWORK PROJECTS</h2>
+        <h2>Key Projects</h2>
 
         <div class="card">
-            <span class="badge">Awarded 1st Place</span>
+            <span class="badge"><i class="fas fa-trophy"></i> Awarded 1st Place</span>
             <div class="card-header">
                 <div class="card-title-group">
-                    <h3>Defect Identification and Classification Using YOLOv5 and Azure Machine Learning</h3>
+                    <h3>Defect Identification Using YOLOv5</h3>
+                    <div class="card-subtitle">Azure Machine Learning</div>
                 </div>
-                <img src="assets/img/Hackathon 示意.jpg" alt="ML" class="card-logo">
             </div>
             <div class="card-content">
                 <ul>
-                    <li>Trained a defect detection and multiclass classification model using MoS₂ images, applying image preprocessing techniques to enhance defect visibility and reduce noise.</li>
-                    <li>Verified detected defects using intensity profile analysis and manual cross-checking to ensure practical validity.</li>
-                    <li>Evaluated model performance using precision and recall metrics to assess detection reliability.</li>
+                    <li>Trained a defect detection and multiclass classification model using MoS₂ images, significantly enhancing visibility via image preprocessing.</li>
+                    <li>Verified defects using intensity profile analysis and achieved high precision/recall metrics for industrial application.</li>
                 </ul>
             </div>
         </div>
@@ -358,51 +402,40 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-title-group">
-                    <h3>Design Project: Quorum Sensing Behavior Observation</h3>
-                </div>
-                <img src="assets/img/微流控示意圖.jpg" alt="MF" class="card-logo">
-            </div>
-            <div class="card-content">
-                <ul>
-                    <li>Designed a microfluidic device to test the hypothesis that quorum sensing behavior can be observed in small populations when confined within limited volumes.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title-group">
-                    <h3>Machine Learning with Materials Project Database</h3>
+                    <h3>Microfluidic Design Project</h3>
+                    <div class="card-subtitle">Quorum Sensing Observation</div>
                 </div>
             </div>
             <div class="card-content">
                 <ul>
-                    <li>Utilized machine learning techniques to predict crystalline structures based on key chemical properties.</li>
+                    <li>Engineered a microfluidic device to observe quorum sensing behavior in small, confined populations.</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="extracurricular">
-        <h2>Extracurricular Activities</h2>
+        <h2>Global Engagement</h2>
         <div class="card">
             <div class="card-header">
                 <div class="card-title-group">
-                    <h3>2019 International Top University Regatta</h3>
+                    <h3>International Top University Regatta</h3>
+                    <div class="card-subtitle">Competitive Sailing Team</div>
                 </div>
-                <img src="assets/img/帆船.jpg" alt="WS" class="card-logo">
+                <i class="fas fa-ship card-logo-placeholder"></i>
             </div>
             <div class="card-content">
-                <ul>
-                    <li>Participated in the 2019 International Top Universities Regatta (ITUR) held at Qingdao Olympic Sailing Center, competing alongside 12 invited teams from prestigious universities worldwide, including Oxford, Cambridge, UC Berkeley, and Tsinghua University.</li>
-                    <li>The event provided a high-level international exchange platform, combining competitive sailing with cross-cultural collaboration. Through teamwork and strategic sailing, I enhanced my communication, and cross-cultural collaboration skills while engaging with peers from top global universities.</li>
-                </ul>
-                <em>Developed teamwork, communication, and cross-cultural collaboration skills in a competitive international environment.</em>
+                <p style="font-size: 0.95rem; color: var(--text-main);">
+                    Competed in the ITUR at the Qingdao Olympic Sailing Center alongside teams from <strong>Oxford, Cambridge, and UC Berkeley</strong>. Developed high-level teamwork and strategic communication skills in a high-pressure, international environment.
+                </p>
             </div>
         </div>
     </section>
 </div>
 
-</body>
+<footer>
+    <p>&copy; 2024 Tzu-Chun Huang | Built with HTML & CSS</p>
+</footer>
 
+</body>
 </html>
