@@ -13,6 +13,7 @@
             --industrial-gray: #e0e0e0;
             --text-main: #333333;
             --text-light: #666666;
+            --text-muted: #888888; /* 座右銘使用的淺灰色 */
             --white: #ffffff;
             --border-color: #d0d7de;
         }
@@ -86,7 +87,6 @@
             gap: 50px;
         }
 
-        /* 220px 放大版頭像 + 工業設計雙層框 */
         .profile-pic {
             width: 220px;
             height: 220px;
@@ -139,6 +139,16 @@
 
         .contact-info a:hover {
             border-bottom: 1px solid var(--accent-blue);
+        }
+
+        /* 座右銘樣式 */
+        .motto {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            font-style: italic;
         }
 
         section {
@@ -222,16 +232,15 @@
         .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: center; /* 改回居中對齊 */
+            align-items: center;
             margin-bottom: 20px;
             gap: 30px;
         }
 
-        /* 標誌固定高度修正：不再隨文字多寡而變大 */
         .card-logo {
-            height: 100px; /* 固定合適高度 */
+            height: 100px;
             width: auto;
-            max-width: 300px; /* 限制寬度上限 */
+            max-width: 300px;
             object-fit: contain;
             object-position: right center;
         }
@@ -286,7 +295,6 @@
             text-align: justify;
         }
 
-        /* 藍色箭頭 */
         .card-content ul > li::before {
             content: "→";
             position: absolute;
@@ -295,7 +303,6 @@
             font-weight: bold;
         }
 
-        /* 移除微流控區域的箭頭 */
         .card-content ol li {
             padding-left: 0;
             margin-bottom: 5px;
@@ -366,6 +373,8 @@
                 <span><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/tzuchun-huang" target="_blank">LinkedIn</a></span>
                 <span><i class="fab fa-github"></i> <a href="https://github.com/tzuchunapply" target="_blank">GitHub</a></span>
             </div>
+            <!-- 座右銘 -->
+            <div class="motto">“Continuously learning to solve complex problems with clarity.”</div>
         </div>
     </header>
 
