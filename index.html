@@ -86,7 +86,7 @@
             gap: 50px;
         }
 
-        /* 放大版頭像 + 工業設計框 */
+        /* 220px 放大版頭像 + 工業設計雙層框 */
         .profile-pic {
             width: 220px;
             height: 220px;
@@ -222,19 +222,18 @@
         .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: stretch; 
+            align-items: center; /* 改回居中對齊 */
             margin-bottom: 20px;
             gap: 30px;
         }
 
-        /* Logo 調整為 495px 並靠右對齊 */
+        /* 標誌固定高度修正：不再隨文字多寡而變大 */
         .card-logo {
-            height: auto;
-            max-height: 100%;
-            width: 495px; 
+            height: 100px; /* 固定合適高度 */
+            width: auto;
+            max-width: 300px; /* 限制寬度上限 */
             object-fit: contain;
             object-position: right center;
-            align-self: center;
         }
 
         .project-img {
@@ -287,6 +286,7 @@
             text-align: justify;
         }
 
+        /* 藍色箭頭 */
         .card-content ul > li::before {
             content: "→";
             position: absolute;
@@ -295,6 +295,7 @@
             font-weight: bold;
         }
 
+        /* 移除微流控區域的箭頭 */
         .card-content ol li {
             padding-left: 0;
             margin-bottom: 5px;
@@ -329,7 +330,7 @@
             .profile-pic { width: 200px; height: 200px; }
             .card-header { flex-direction: column; align-items: flex-start; }
             .project-img { max-width: 100%; order: -1; }
-            .card-logo { width: 100%; max-width: 400px; object-position: left; }
+            .card-logo { height: 80px; object-position: left; }
         }
 
         @media (max-width: 768px) {
