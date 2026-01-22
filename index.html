@@ -200,17 +200,27 @@
         .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 20px;
             gap: 30px;
         }
 
+        /* Company Logos (Standard) */
         .card-logo {
             max-width: 180px;
             max-height: 120px;
             width: auto;
             height: auto;
             object-fit: contain;
+        }
+
+        /* BIGGER IMAGES for Projects & Extracurricular */
+        .project-img {
+            max-width: 350px; /* Increased size */
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            box-shadow: 4px 4px 0px var(--industrial-gray);
         }
 
         .card-title-group {
@@ -283,12 +293,15 @@
             padding-top: 10px;
         }
 
+        @media (max-width: 850px) {
+            .card-header { flex-direction: column; }
+            .project-img { max-width: 100%; order: -1; }
+        }
+
         @media (max-width: 768px) {
             header { flex-direction: column; text-align: center; gap: 20px; }
             h1 { font-size: 2.5rem; }
             .contact-info { justify-content: center; }
-            .card-header { flex-direction: column; gap: 15px; align-items: flex-start; }
-            .card-logo { order: -1; max-width: 150px; }
             .nav-container a { padding: 10px 10px; font-size: 0.65rem; }
         }
     </style>
@@ -415,7 +428,7 @@
                 <div class="card-title-group">
                     <h3>Defect Identification and Classification Using YOLOv5 and Azure Machine Learning</h3>
                 </div>
-                <img src="assets/img/Hackathon 示意.jpg" alt="ML" class="card-logo">
+                <img src="assets/img/Hackathon 示意.jpg" alt="ML" class="project-img">
             </div>
             <div class="card-content">
                 <ul>
@@ -431,7 +444,7 @@
                 <div class="card-title-group">
                     <h3>Design Project: Quorum Sensing Behavior Observation</h3>
                 </div>
-                <img src="assets/img/微流控示意圖.jpg" alt="MF" class="card-logo">
+                <img src="assets/img/微流控示意圖.jpg" alt="MF" class="project-img">
             </div>
             <div class="card-content">
                 <ul>
@@ -448,7 +461,7 @@
                 <div class="card-title-group">
                     <h3>2019 International Top University Regatta</h3>
                 </div>
-                <img src="assets/img/帆船.jpg" alt="WS" class="card-logo">
+                <img src="assets/img/帆船.jpg" alt="WS" class="project-img">
             </div>
             <div class="card-content">
                 <ul>
