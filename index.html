@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VKQV0H7WQC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-VKQV0H7WQC');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tzu-Chun Huang | Professional Portfolio</title>
@@ -18,7 +28,7 @@
             --secondary-dark: #2d2d2d;
             --accent-blue: #0969da;
             --industrial-gray: #e0e0e0;
-            --tag-gray: #ebf0f4; /* New Skill Tag Gray */
+            --tag-gray: #ebf0f4;
             --text-main: #333333;
             --text-light: #666666;
             --text-muted: #888888;
@@ -187,7 +197,6 @@
             gap: 10px;
         }
 
-        /* Updated Skill Tag Style: Gray Background */
         .tag {
             background: var(--industrial-gray);
             color: var(--primary-dark);
