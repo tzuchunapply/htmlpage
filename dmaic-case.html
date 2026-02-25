@@ -7,237 +7,328 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-dark: #1a1a1a;
-            --secondary-dark: #2d2d2d;
-            --accent-blue: #0969da;
-            --industrial-gray: #e0e0e0;
-            --text-main: #333333;
-            --text-light: #666666;
-            --border-color: #d0d7de;
+            --bg-color: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
             --white: #ffffff;
-            --dmaic-accent: #0550ae;
+            
+            /* Phase Colors - Modern & Professional Palette */
+            --color-define: #334155;    /* Slate */
+            --color-measure: #0891b2;   /* Cyan */
+            --color-analyze: #7c3aed;   /* Violet */
+            --color-improve: #059669;   /* Emerald */
+            --color-control: #2563eb;   /* Blue */
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Arial', sans-serif; }
-        body { background-color: #f6f8fa; color: var(--text-main); line-height: 1.6; }
-
-        .top-bar { height: 10px; background: var(--primary-dark); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
         
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            line-height: 1.6;
+            padding-bottom: 100px;
+        }
+
+        /* Nav */
         nav {
-            background: var(--primary-dark);
-            padding: 15px 0;
+            background: #1a1a1a;
+            padding: 1rem;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+        .nav-container { max-width: 900px; margin: 0 auto; }
+        .nav-container a { 
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        .nav-container a:hover { color: #38bdf8; }
 
-        .nav-container { max-width: 1000px; margin: 0 auto; padding: 0 25px; }
-        .nav-container a { color: white; text-decoration: none; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
-        .nav-container a:hover { color: var(--accent-blue); }
-
-        .container { max-width: 900px; margin: 40px auto; padding: 0 25px 80px 25px; }
-
-        .header-section { margin-bottom: 40px; border-bottom: 3px solid var(--primary-dark); padding-bottom: 20px; }
-        h1 { font-size: 2.2rem; color: var(--primary-dark); letter-spacing: -1px; line-height: 1.2; }
-        .subtitle { font-size: 1.1rem; color: var(--accent-blue); font-weight: bold; margin-top: 5px; }
-
-        /* Overview Image Styling */
-        .overview-card {
-            background: white;
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            margin-bottom: 40px;
+        /* Header */
+        header {
+            max-width: 900px;
+            margin: 60px auto 40px;
+            padding: 0 25px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        .overview-card img { max-width: 100%; height: auto; border: 1px solid #eee; }
-        .overview-caption { margin-top: 15px; font-style: italic; color: var(--text-light); font-size: 0.9rem; }
-
-        /* DMAIC Steps Styling */
-        .dmaic-step {
-            background: white;
-            border: 1px solid var(--border-color);
-            margin-bottom: 25px;
-            display: flex;
-            overflow: hidden;
-            transition: transform 0.2s ease;
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
         }
-        .dmaic-step:hover { transform: translateX(5px); border-left: 8px solid var(--accent-blue); }
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-        .step-number {
-            background: var(--secondary-dark);
-            color: white;
-            padding: 30px;
+        /* Timeline Container */
+        .timeline {
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        /* The vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        /* Step Card */
+        .step-card {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 80px;
+        }
+
+        .step-dot {
+            position: absolute;
+            left: 31px;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-width: 140px;
-            text-align: center;
+            color: white;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            font-size: 1.2rem;
         }
-        .step-number span { font-size: 0.8rem; text-transform: uppercase; opacity: 0.8; }
-        .step-number strong { font-size: 1.8rem; }
 
-        .step-content { padding: 30px; flex: 1; }
-        .step-content h3 { color: var(--primary-dark); margin-bottom: 15px; font-size: 1.3rem; border-bottom: 1px solid var(--industrial-gray); padding-bottom: 5px; }
-        
-        .sub-section { margin-bottom: 15px; }
-        .sub-label { font-weight: bold; color: var(--accent-blue); display: block; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px; }
-        
-        ul { list-style: none; }
-        ul li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 1rem; }
-        ul li::before { content: "•"; color: var(--accent-blue); position: absolute; left: 0; font-weight: bold; }
+        .card-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            transition: 0.3s ease;
+        }
+        .card-content:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
 
-        .highlight-box {
-            background: #fff8e1;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin-top: 10px;
+        .card-content h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .sub-block h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .sub-block p, .sub-block li {
             font-size: 0.95rem;
+            color: #334155;
         }
 
-        footer { text-align: center; padding: 40px; color: var(--text-light); font-size: 0.9rem; }
+        ul { list-style: none; }
+        li { position: relative; padding-left: 18px; margin-bottom: 6px; }
+        li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            opacity: 0.5;
+        }
+
+        /* Dynamic Colors for each phase */
+        .step-define .step-dot { background-color: var(--color-define); }
+        .step-define .card-content h2 { color: var(--color-define); }
+        
+        .step-measure .step-dot { background-color: var(--color-measure); }
+        .step-measure .card-content h2 { color: var(--color-measure); }
+
+        .step-analyze .step-dot { background-color: var(--color-analyze); }
+        .step-analyze .card-content h2 { color: var(--color-analyze); }
+
+        .step-improve .step-dot { background-color: var(--color-improve); }
+        .step-improve .card-content h2 { color: var(--color-improve); }
+
+        .step-control .step-dot { background-color: var(--color-control); }
+        .step-control .card-content h2 { color: var(--color-control); }
+
+        /* Highlight Result Box */
+        .result-box {
+            margin-top: 15px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .step-analyze .result-box { background: #f5f3ff; color: #5b21b6; border-left: 4px solid var(--color-analyze); }
+        .step-improve .result-box { background: #ecfdf5; color: #065f46; border-left: 4px solid var(--color-improve); }
 
         @media (max-width: 768px) {
-            .dmaic-step { flex-direction: column; }
-            .step-number { padding: 15px; flex-direction: row; gap: 10px; min-width: auto; }
+            .grid { grid-template-columns: 1fr; }
+            .timeline::before { left: 30px; }
+            .step-card { padding-left: 60px; }
+            .step-dot { left: 11px; width: 36px; height: 36px; }
+            header h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="top-bar"></div>
 <nav>
     <div class="nav-container">
-        <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+        <a href="index.html"><i class="fas fa-arrow-left"></i> BACK TO PORTFOLIO</a>
     </div>
 </nav>
 
-<div class="container">
-    <div class="header-section">
-        <h1>DMAIC Case Study: Urine Creatinine Measurement Deviation</h1>
-        <div class="subtitle">Quality Control Optimization in Clinical Analytical Chemistry</div>
-    </div>
+<header>
+    <h1>DMAIC Framework Case</h1>
+    <p>Systematic Problem-Solving for Urine Creatinine Measurement Deviation in Laboratory Quality Control.</p>
+</header>
 
-    <!-- 插入你的 work case.png -->
-    <div class="overview-card">
-        <img src="assets/img/work case.png" alt="QC Investigation Workflow">
-        <div class="overview-caption">Figure 1: Investigation & Resolution Workflow for Control Sample Deviation</div>
-    </div>
+<div class="timeline">
 
     <!-- 1. DEFINE -->
-    <div class="dmaic-step">
-        <div class="step-number">
-            <span>Phase</span>
-            <strong>1</strong>
-        </div>
-        <div class="step-content">
-            <h3>DEFINE</h3>
-            <div class="sub-section">
-                <span class="sub-label">Situation & Task</span>
-                <p>During routine urine creatinine analysis, significant and unreasonable deviations were observed between standard samples and actual measurements, undermining overall data credibility.</p>
-            </div>
-            <div class="sub-section">
-                <span class="sub-label">Goal</span>
-                <ul>
-                    <li>Identify the root cause of the deviation.</li>
-                    <li>Restore measurement results to an acceptable range.</li>
-                    <li>Ensure accurate and reproducible data for patient results.</li>
-                </ul>
+    <div class="step-card step-define">
+        <div class="step-dot"><i class="fas fa-bullseye"></i></div>
+        <div class="card-content">
+            <h2>1. DEFINE</h2>
+            <div class="grid">
+                <div class="sub-block">
+                    <h4>Situation & Task</h4>
+                    <p>Significant and unreasonable deviations were observed between standard samples and actual measurements, undermining data credibility.</p>
+                </div>
+                <div class="sub-block">
+                    <h4>Goal</h4>
+                    <ul>
+                        <li>Identify root cause of deviation.</li>
+                        <li>Restore results to acceptable range.</li>
+                        <li>Ensure 100% accurate & reproducible data.</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- 2. MEASURE -->
-    <div class="dmaic-step">
-        <div class="step-number">
-            <span>Phase</span>
-            <strong>2</strong>
-        </div>
-        <div class="step-content">
-            <h3>MEASURE</h3>
-            <div class="sub-section">
-                <span class="sub-label">Actions</span>
-                <ul>
-                    <li>Reviewed and compared experimental records to detect deviations in operating conditions.</li>
-                    <li>Audited preparation and storage records of standards to rule out contamination.</li>
-                    <li>Monitored environmental factors, specifically lab temperature and sample equilibration times.</li>
-                </ul>
-            </div>
-            <div class="sub-section">
-                <span class="sub-label">Measurements</span>
-                <p>Collected quantitative data showing systematic deviations under varying temperature conditions (High standard deviation in QC checks).</p>
+    <div class="step-card step-measure">
+        <div class="step-dot"><i class="fas fa-chart-bar"></i></div>
+        <div class="card-content">
+            <h2>2. MEASURE</h2>
+            <div class="grid">
+                <div class="sub-block">
+                    <h4>Actions Taken</h4>
+                    <ul>
+                        <li>Audited preparation/storage records.</li>
+                        <li>Rule out contamination via control checks.</li>
+                        <li>Monitored lab ambient temperature and equilibration times.</li>
+                    </ul>
+                </div>
+                <div class="sub-block">
+                    <h4>Data Collected</h4>
+                    <p>Quantitative analysis revealed systematic high deviation correlated with specific shifts and environmental fluctuations.</p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- 3. ANALYZE -->
-    <div class="dmaic-step">
-        <div class="step-number" style="background-color: #c62828;">
-            <span>Phase</span>
-            <strong>3</strong>
-        </div>
-        <div class="step-content">
-            <h3>ANALYZE</h3>
-            <div class="sub-section">
-                <span class="sub-label">Root Cause Analysis Tools</span>
-                <p>Applied <strong>Fishbone Diagram</strong> and <strong>"5 Whys"</strong> to assess reagent preparation, handling, and environmental effects.</p>
+    <div class="step-card step-analyze">
+        <div class="step-dot"><i class="fas fa-microscope"></i></div>
+        <div class="card-content">
+            <h2>3. ANALYZE</h2>
+            <div class="grid">
+                <div class="sub-block">
+                    <h4>Methodology</h4>
+                    <p>Applied <strong>Fishbone Diagram</strong> and <strong>"5 Whys"</strong> to examine Reagents, Handling, Environment, and Instrumentation.</p>
+                </div>
+                <div class="sub-block">
+                    <h4>Root Cause</h4>
+                    <p>Inconsistent lab temperature caused thermal differences between standards and samples, directly impacting <strong>reaction kinetics</strong>.</p>
+                </div>
             </div>
-            <div class="highlight-box">
-                <strong>Analysis Result:</strong> Identified that inconsistent laboratory temperature caused significant thermal differences between standards and samples, affecting reaction kinetics and UV-Vis measurement accuracy.
+            <div class="result-box">
+                <i class="fas fa-exclamation-triangle"></i> Impact: Temperature variation skewed UV-Vis absorption peaks by altering reactant solubility and kinetics.
             </div>
         </div>
     </div>
 
     <!-- 4. IMPROVE -->
-    <div class="dmaic-step">
-        <div class="step-number" style="background-color: #2e7d32;">
-            <span>Phase</span>
-            <strong>4</strong>
-        </div>
-        <div class="step-content">
-            <h3>IMPROVE</h3>
-            <div class="sub-section">
-                <span class="sub-label">Implementation</span>
-                <ul>
-                    <li>Revised SOPs to ensure mandatory temperature equilibration of all standards and samples before UV-Vis analysis.</li>
-                    <li>Implemented a "stabilization period" for reagents after removal from storage.</li>
-                </ul>
+    <div class="step-card step-improve">
+        <div class="step-dot"><i class="fas fa-tools"></i></div>
+        <div class="card-content">
+            <h2>4. IMPROVE</h2>
+            <div class="grid">
+                <div class="sub-block">
+                    <h4>Action Plan</h4>
+                    <ul>
+                        <li>Revised SOP for mandatory 30-min temperature equilibration.</li>
+                        <li>Stabilized reagent incubation procedures.</li>
+                        <li>Conducted cross-training for lab technicians.</li>
+                    </ul>
+                </div>
+                <div class="sub-block">
+                    <h4>Improvement Result</h4>
+                    <p>Measurement values returned to normal range with <strong>CV < 3%</strong>. Reliable data restored for all patient records.</p>
+                </div>
             </div>
-            <div class="sub-section">
-                <span class="sub-label">Results</span>
-                <p>Measurement values returned to normal range with high reproducibility and reliability.</p>
+            <div class="result-box">
+                <i class="fas fa-check-circle"></i> Result: Restored consistent measurement performance and eliminated outlier data.
             </div>
         </div>
     </div>
 
     <!-- 5. CONTROL -->
-    <div class="dmaic-step">
-        <div class="step-number" style="background-color: var(--accent-blue);">
-            <span>Phase</span>
-            <strong>5</strong>
-        </div>
-        <div class="step-content">
-            <h3>CONTROL</h3>
-            <div class="sub-section">
-                <span class="sub-label">Standardization</span>
-                <ul>
-                    <li>Formalized the improved SOP as the routine protocol for all lab personnel.</li>
-                    <li>Established a periodic monitoring log for lab ambient temperature.</li>
-                </ul>
-            </div>
-            <div class="sub-section">
-                <span class="sub-label">Outcome</span>
-                <p>Achieved <strong>reduced review time</strong> and <strong>reliable results</strong>. No further systematic deviations recorded since implementation.</p>
+    <div class="step-card step-control">
+        <div class="step-dot"><i class="fas fa-shield-alt"></i></div>
+        <div class="card-content">
+            <h2>5. CONTROL</h2>
+            <div class="grid">
+                <div class="sub-block">
+                    <h4>Sustainability</h4>
+                    <ul>
+                        <li>Formalized SOP as standard protocol.</li>
+                        <li>Integrated temperature logging into Daily QC.</li>
+                        <li>Established periodic audit of control limit charts.</li>
+                    </ul>
+                </div>
+                <div class="sub-block">
+                    <h4>Outcome</h4>
+                    <p>Reduced review time and maintained zero systematic deviation for over 12 consecutive months.</p>
+                </div>
             </div>
         </div>
     </div>
 
 </div>
-
-<footer>
-    &copy; 2026 Tzu-Chun Huang | Quality Control Case Study
-</footer>
 
 </body>
 </html>
