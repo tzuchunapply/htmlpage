@@ -36,6 +36,17 @@
             --border-color: #d0d7de;
         }
 
+        /* 背景 Canvas 樣式 */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* 置於最底層 */
+            background-color: #f6f8fa;
+        }
+
         html, body {
             height: auto !important;
             min-height: 100%;
@@ -55,7 +66,8 @@
         }
 
         body {
-            background-color: #f6f8fa;
+            /* 移除原本的背景色，讓 Canvas 顯示出來 */
+            background-color: transparent; 
             color: var(--text-main);
             line-height: 1.5;
         }
@@ -100,6 +112,7 @@
             max-width: 950px;
             margin: 0 auto;
             padding: 40px 25px 80px 25px;
+            position: relative; /* 確保內容在 Canvas 之上 */
         }
 
         header {
@@ -109,6 +122,8 @@
             display: flex;
             align-items: center;
             gap: 50px;
+            background: rgba(246, 248, 250, 0.8); /* 稍微透明背景增加閱讀性 */
+            backdrop-filter: blur(5px);
         }
 
         .profile-pic {
@@ -174,12 +189,14 @@
             padding-left: 15px;
             margin-bottom: 30px;
             color: var(--primary-dark);
+            background: rgba(246, 248, 250, 0.7);
         }
 
         .skill-section {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border: 1px solid var(--border-color);
+            backdrop-filter: blur(5px);
         }
 
         .skill-category h3 {
@@ -218,18 +235,20 @@
         }
 
         .card {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid var(--border-color);
             padding: 35px;
             margin-bottom: 25px;
             position: relative;
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 12px 12px 0px rgba(26, 26, 26, 0.05);
             border-color: var(--primary-dark);
+            background: rgba(255, 255, 255, 1);
         }
 
         .about-text p {
@@ -324,7 +343,7 @@
             clear: both;
             text-align: center;
             padding: 60px 0;
-            background-color: #f1f3f5;
+            background-color: rgba(241, 243, 245, 0.9);
             color: var(--text-muted);
             font-size: 0.95rem;
             border-top: 1px solid var(--border-color);
@@ -345,6 +364,9 @@
     </style>
 </head>
 <body>
+
+<!-- 互動式背景 Canvas -->
+<canvas id="bg-canvas"></canvas>
 
 <div class="top-bar"></div>
 
@@ -474,10 +496,8 @@
             <span class="badge">Awarded 1st Place</span>
             <div class="card-header">
                 <div class="card-title-group">
-                    <!-- 這裡加入了 <br> 進行換行 -->
                     <h3>Hackathon-<br>Defect Identification and Classification Using<br>YOLOv5 and Azure Machine Learning</h3>
                 </div>
-                <!-- 使用 div 包裹兩張圖片，使其垂直排列並保有間距 -->
                 <div style="display: flex; flex-direction: column; gap: 15px;">
                     <img src="assets/img/Hackathon 示意.jpg" alt="ML" class="project-img">
                     <img src="assets/img/MAP.png" alt="MAP" class="project-img">
@@ -539,11 +559,103 @@
     &copy; 2026 Tzu-Chun Huang. All rights reserved.
 </footer>
 
+<!-- 互動式背景腳本 -->
+<script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let particles = [];
+    const particleCount = 80; // 粒子數量
+    const connectionDistance = 150; // 連線距離
+    const mouse = { x: null, y: null, radius: 150 };
+
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+    });
+
+    window.addEventListener('resize', () => {
+        initCanvas();
+    });
+
+    function initCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 1;
+            this.speedX = Math.random() * 1 - 0.5;
+            this.speedY = Math.random() * 1 - 0.5;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+            if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+        }
+
+        draw() {
+            ctx.fillStyle = '#0969da'; // 使用你的 accent-blue
+            ctx.globalAlpha = 0.4;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+
+            // 線條邏輯
+            for (let j = i; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < connectionDistance) {
+                    ctx.strokeStyle = '#0969da';
+                    ctx.globalAlpha = 1 - (distance / connectionDistance); // 距離越遠越透明
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+
+            // 滑鼠互動線條
+            const mdx = particles[i].x - mouse.x;
+            const mdy = particles[i].y - mouse.y;
+            const mDistance = Math.sqrt(mdx * mdx + mdy * mdy);
+            if (mDistance < mouse.radius) {
+                ctx.strokeStyle = '#0969da';
+                ctx.globalAlpha = 0.3;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(mouse.x, mouse.y);
+                ctx.stroke();
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    initCanvas();
+    animate();
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
