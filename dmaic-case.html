@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMAIC Case Study | Tzu-Chun Huang</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a1a1a;
+            --secondary-dark: #2d2d2d;
+            --accent-blue: #0969da;
+            --industrial-gray: #e0e0e0;
+            --text-main: #333333;
+            --text-light: #666666;
+            --border-color: #d0d7de;
+            --white: #ffffff;
+            --dmaic-accent: #0550ae;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Arial', sans-serif; }
+        body { background-color: #f6f8fa; color: var(--text-main); line-height: 1.6; }
+
+        .top-bar { height: 10px; background: var(--primary-dark); }
+        
+        nav {
+            background: var(--primary-dark);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container { max-width: 1000px; margin: 0 auto; padding: 0 25px; }
+        .nav-container a { color: white; text-decoration: none; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
+        .nav-container a:hover { color: var(--accent-blue); }
+
+        .container { max-width: 900px; margin: 40px auto; padding: 0 25px 80px 25px; }
+
+        .header-section { margin-bottom: 40px; border-bottom: 3px solid var(--primary-dark); padding-bottom: 20px; }
+        h1 { font-size: 2.2rem; color: var(--primary-dark); letter-spacing: -1px; line-height: 1.2; }
+        .subtitle { font-size: 1.1rem; color: var(--accent-blue); font-weight: bold; margin-top: 5px; }
+
+        /* Overview Image Styling */
+        .overview-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .overview-card img { max-width: 100%; height: auto; border: 1px solid #eee; }
+        .overview-caption { margin-top: 15px; font-style: italic; color: var(--text-light); font-size: 0.9rem; }
+
+        /* DMAIC Steps Styling */
+        .dmaic-step {
+            background: white;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+            display: flex;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        .dmaic-step:hover { transform: translateX(5px); border-left: 8px solid var(--accent-blue); }
+
+        .step-number {
+            background: var(--secondary-dark);
+            color: white;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 140px;
+            text-align: center;
+        }
+        .step-number span { font-size: 0.8rem; text-transform: uppercase; opacity: 0.8; }
+        .step-number strong { font-size: 1.8rem; }
+
+        .step-content { padding: 30px; flex: 1; }
+        .step-content h3 { color: var(--primary-dark); margin-bottom: 15px; font-size: 1.3rem; border-bottom: 1px solid var(--industrial-gray); padding-bottom: 5px; }
+        
+        .sub-section { margin-bottom: 15px; }
+        .sub-label { font-weight: bold; color: var(--accent-blue); display: block; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px; }
+        
+        ul { list-style: none; }
+        ul li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 1rem; }
+        ul li::before { content: "•"; color: var(--accent-blue); position: absolute; left: 0; font-weight: bold; }
+
+        .highlight-box {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        footer { text-align: center; padding: 40px; color: var(--text-light); font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .dmaic-step { flex-direction: column; }
+            .step-number { padding: 15px; flex-direction: row; gap: 10px; min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+<nav>
+    <div class="nav-container">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header-section">
+        <h1>DMAIC Case Study: Urine Creatinine Measurement Deviation</h1>
+        <div class="subtitle">Quality Control Optimization in Clinical Analytical Chemistry</div>
+    </div>
+
+    <!-- 插入你的 work case.png -->
+    <div class="overview-card">
+        <img src="assets/img/work case.png" alt="QC Investigation Workflow">
+        <div class="overview-caption">Figure 1: Investigation & Resolution Workflow for Control Sample Deviation</div>
+    </div>
+
+    <!-- 1. DEFINE -->
+    <div class="dmaic-step">
+        <div class="step-number">
+            <span>Phase</span>
+            <strong>1</strong>
+        </div>
+        <div class="step-content">
+            <h3>DEFINE</h3>
+            <div class="sub-section">
+                <span class="sub-label">Situation & Task</span>
+                <p>During routine urine creatinine analysis, significant and unreasonable deviations were observed between standard samples and actual measurements, undermining overall data credibility.</p>
+            </div>
+            <div class="sub-section">
+                <span class="sub-label">Goal</span>
+                <ul>
+                    <li>Identify the root cause of the deviation.</li>
+                    <li>Restore measurement results to an acceptable range.</li>
+                    <li>Ensure accurate and reproducible data for patient results.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MEASURE -->
+    <div class="dmaic-step">
+        <div class="step-number">
+            <span>Phase</span>
+            <strong>2</strong>
+        </div>
+        <div class="step-content">
+            <h3>MEASURE</h3>
+            <div class="sub-section">
+                <span class="sub-label">Actions</span>
+                <ul>
+                    <li>Reviewed and compared experimental records to detect deviations in operating conditions.</li>
+                    <li>Audited preparation and storage records of standards to rule out contamination.</li>
+                    <li>Monitored environmental factors, specifically lab temperature and sample equilibration times.</li>
+                </ul>
+            </div>
+            <div class="sub-section">
+                <span class="sub-label">Measurements</span>
+                <p>Collected quantitative data showing systematic deviations under varying temperature conditions (High standard deviation in QC checks).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. ANALYZE -->
+    <div class="dmaic-step">
+        <div class="step-number" style="background-color: #c62828;">
+            <span>Phase</span>
+            <strong>3</strong>
+        </div>
+        <div class="step-content">
+            <h3>ANALYZE</h3>
+            <div class="sub-section">
+                <span class="sub-label">Root Cause Analysis Tools</span>
+                <p>Applied <strong>Fishbone Diagram</strong> and <strong>"5 Whys"</strong> to assess reagent preparation, handling, and environmental effects.</p>
+            </div>
+            <div class="highlight-box">
+                <strong>Analysis Result:</strong> Identified that inconsistent laboratory temperature caused significant thermal differences between standards and samples, affecting reaction kinetics and UV-Vis measurement accuracy.
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. IMPROVE -->
+    <div class="dmaic-step">
+        <div class="step-number" style="background-color: #2e7d32;">
+            <span>Phase</span>
+            <strong>4</strong>
+        </div>
+        <div class="step-content">
+            <h3>IMPROVE</h3>
+            <div class="sub-section">
+                <span class="sub-label">Implementation</span>
+                <ul>
+                    <li>Revised SOPs to ensure mandatory temperature equilibration of all standards and samples before UV-Vis analysis.</li>
+                    <li>Implemented a "stabilization period" for reagents after removal from storage.</li>
+                </ul>
+            </div>
+            <div class="sub-section">
+                <span class="sub-label">Results</span>
+                <p>Measurement values returned to normal range with high reproducibility and reliability.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. CONTROL -->
+    <div class="dmaic-step">
+        <div class="step-number" style="background-color: var(--accent-blue);">
+            <span>Phase</span>
+            <strong>5</strong>
+        </div>
+        <div class="step-content">
+            <h3>CONTROL</h3>
+            <div class="sub-section">
+                <span class="sub-label">Standardization</span>
+                <ul>
+                    <li>Formalized the improved SOP as the routine protocol for all lab personnel.</li>
+                    <li>Established a periodic monitoring log for lab ambient temperature.</li>
+                </ul>
+            </div>
+            <div class="sub-section">
+                <span class="sub-label">Outcome</span>
+                <p>Achieved <strong>reduced review time</strong> and <strong>reliable results</strong>. No further systematic deviations recorded since implementation.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2026 Tzu-Chun Huang | Quality Control Case Study
+</footer>
+
+</body>
+</html>
