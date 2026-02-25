@@ -68,7 +68,7 @@
         header p {
             font-size: 1.1rem;
             color: var(--text-muted);
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
@@ -80,7 +80,6 @@
             padding: 0 20px;
         }
 
-        /* The vertical line */
         .timeline::before {
             content: '';
             position: absolute;
@@ -153,6 +152,7 @@
         .sub-block p, .sub-block li {
             font-size: 0.95rem;
             color: #334155;
+            text-align: justify;
         }
 
         ul { list-style: none; }
@@ -210,8 +210,8 @@
 </nav>
 
 <header>
-    <h1>DMAIC Framework Case</h1>
-    <p>Systematic Problem-Solving for Urine Creatinine Measurement Deviation in Laboratory Quality Control.</p>
+    <h1>DMAIC Case Study</h1>
+    <p>Systematic investigation of urine creatinine measurement deviation caused by sample temperature mismatch.</p>
 </header>
 
 <div class="timeline">
@@ -224,14 +224,14 @@
             <div class="grid">
                 <div class="sub-block">
                     <h4>Situation & Task</h4>
-                    <p>Significant and unreasonable deviations were observed between standard samples and actual measurements, undermining data credibility.</p>
+                    <p>During urine creatinine analysis, significant and unreasonable deviations were observed in standard samples (<strong>Control Sample OOC</strong>), undermining overall data credibility.</p>
                 </div>
                 <div class="sub-block">
-                    <h4>Goal</h4>
+                    <h4>Goals</h4>
                     <ul>
-                        <li>Identify root cause of deviation.</li>
-                        <li>Restore results to acceptable range.</li>
-                        <li>Ensure 100% accurate & reproducible data.</li>
+                        <li>Identify the root cause of the deviation.</li>
+                        <li>Restore measurement results to an acceptable range.</li>
+                        <li>Ensure experimental legitimacy and compliance.</li>
                     </ul>
                 </div>
             </div>
@@ -245,16 +245,16 @@
             <h2>2. MEASURE</h2>
             <div class="grid">
                 <div class="sub-block">
-                    <h4>Actions Taken</h4>
+                    <h4>Monitoring Actions</h4>
                     <ul>
-                        <li>Audited preparation/storage records.</li>
-                        <li>Rule out contamination via control checks.</li>
-                        <li>Monitored lab ambient temperature and equilibration times.</li>
+                        <li>Reviewed experimental records for procedural deviations.</li>
+                        <li>Checked reagent preparation to rule out contamination.</li>
+                        <li>Monitored lab temperature, humidity, and refrigerator temperature.</li>
                     </ul>
                 </div>
                 <div class="sub-block">
-                    <h4>Data Collected</h4>
-                    <p>Quantitative analysis revealed systematic high deviation correlated with specific shifts and environmental fluctuations.</p>
+                    <h4>Measurements</h4>
+                    <p>Reviewed collected data to identify if systematic deviations occurred simultaneously with the control sample OOC events.</p>
                 </div>
             </div>
         </div>
@@ -267,16 +267,16 @@
             <h2>3. ANALYZE</h2>
             <div class="grid">
                 <div class="sub-block">
-                    <h4>Methodology</h4>
-                    <p>Applied <strong>Fishbone Diagram</strong> and <strong>"5 Whys"</strong> to examine Reagents, Handling, Environment, and Instrumentation.</p>
+                    <h4>Root Cause Methodology</h4>
+                    <p>Assessed factors: reagent prep, handling, and environment. Conducted root cause analysis using the <strong>"5 Whys"</strong> technique.</p>
                 </div>
                 <div class="sub-block">
-                    <h4>Root Cause</h4>
-                    <p>Inconsistent lab temperature caused thermal differences between standards and samples, directly impacting <strong>reaction kinetics</strong>.</p>
+                    <h4>Technical Analysis Result</h4>
+                    <p>UV-Vis results showed deviations due to inconsistent reaction kinetics between <strong>creatinine and Picrate</strong>.</p>
                 </div>
             </div>
             <div class="result-box">
-                <i class="fas fa-exclamation-triangle"></i> Impact: Temperature variation skewed UV-Vis absorption peaks by altering reactant solubility and kinetics.
+                <i class="fas fa-exclamation-triangle"></i> Analysis: Reaction speed is temperature-sensitive. Patient samples were at room temperature, while control samples were taken directly from the refrigerator. This temperature mismatch invalidated the control as a standard.
             </div>
         </div>
     </div>
@@ -288,20 +288,19 @@
             <h2>4. IMPROVE</h2>
             <div class="grid">
                 <div class="sub-block">
-                    <h4>Action Plan</h4>
+                    <h4>Actions Implemented</h4>
                     <ul>
-                        <li>Revised SOP for mandatory 30-min temperature equilibration.</li>
-                        <li>Stabilized reagent incubation procedures.</li>
-                        <li>Conducted cross-training for lab technicians.</li>
+                        <li>Updated SOP to ensure mandatory temperature equilibration of control samples before analysis.</li>
+                        <li>Trained lab personnel to strictly follow revised equilibration procedures.</li>
                     </ul>
                 </div>
                 <div class="sub-block">
                     <h4>Improvement Result</h4>
-                    <p>Measurement values returned to normal range with <strong>CV < 3%</strong>. Reliable data restored for all patient records.</p>
+                    <p>Measurement values successfully returned to the normal/expected range, ensuring consistent analytical performance.</p>
                 </div>
             </div>
             <div class="result-box">
-                <i class="fas fa-check-circle"></i> Result: Restored consistent measurement performance and eliminated outlier data.
+                <i class="fas fa-check-circle"></i> Result: Eliminated the thermal kinetic gap between patient and control samples.
             </div>
         </div>
     </div>
@@ -313,16 +312,15 @@
             <h2>5. CONTROL</h2>
             <div class="grid">
                 <div class="sub-block">
-                    <h4>Sustainability</h4>
+                    <h4>Standardization</h4>
                     <ul>
-                        <li>Formalized SOP as standard protocol.</li>
-                        <li>Integrated temperature logging into Daily QC.</li>
-                        <li>Established periodic audit of control limit charts.</li>
+                        <li>Formalized the improved SOP as the routine protocol for all future experiments.</li>
+                        <li>Established periodic monitoring of lab temperature and measurement consistency logs.</li>
                     </ul>
                 </div>
                 <div class="sub-block">
                     <h4>Outcome</h4>
-                    <p>Reduced review time and maintained zero systematic deviation for over 12 consecutive months.</p>
+                    <p>Maintained accurate and reproducible measurements. Provided a reliable operational reference for ongoing and future clinical analyses.</p>
                 </div>
             </div>
         </div>
