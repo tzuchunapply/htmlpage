@@ -105,12 +105,20 @@
         header {
             margin-bottom: 30px;
             border-bottom: 3px solid var(--primary-dark);
-            padding-bottom: 40px;
+            padding: 40px; /* 增加一點內邊距，讓背景圖有空間 */
             display: flex;
             align-items: center;
             gap: 50px;
-        }
-
+            
+            /* 加入背景圖設定 */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+                              url('assets/img/University-of-Washington-Logo.jpg');
+            background-size: cover;      /* 讓圖片填滿整個區塊 */
+            background-position: center; /* 圖片居中 */
+            background-repeat: no-repeat;
+            border-radius: 8px;          /* 選擇性：讓邊角圓滑一點，更有質感 */
+        }   
+        
         .profile-pic {
             width: 220px;
             height: 220px;
@@ -542,6 +550,7 @@
 
 </body>
 </html>
+
 
 
 
