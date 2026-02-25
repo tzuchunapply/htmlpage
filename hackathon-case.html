@@ -32,7 +32,6 @@
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 25px; }
 
-        /* Section Styling */
         .case-section { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 35px; margin-bottom: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
         h2 { font-size: 1.4rem; margin-bottom: 20px; color: var(--primary-dark); display: flex; align-items: center; gap: 12px; border-bottom: 2px solid var(--bg-color); padding-bottom: 10px; }
         
@@ -42,7 +41,6 @@
         li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.95rem; }
         li::before { content: "→"; position: absolute; left: 0; color: var(--accent-blue); font-weight: bold; }
 
-        /* Image Styling */
         .figure-container { margin-top: 10px; text-align: center; }
         .figure-container img { 
             width: 100%; 
@@ -52,11 +50,6 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         .figure-caption { font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; font-style: italic; }
-
-        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
-        .metric-box { background: #f1f5f9; padding: 15px; border-radius: 8px; text-align: center; }
-        .metric-val { font-size: 1.5rem; font-weight: 800; color: var(--accent-blue); display: block; }
-        .metric-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
 
         @media (max-width: 850px) { .grid-2 { grid-template-columns: 1fr; } }
     </style>
@@ -70,80 +63,104 @@
 </nav>
 
 <header>
-    <span class="badge"><i class="fas fa-trophy"></i> AWARDED 1ST PLACE</span>
+    <span class="badge"><i class="fas fa-trophy"></i> 1st Place Winner</span>
     <h1>MoS₂ Defect Identification & Classification</h1>
     <div class="subtitle">Deep Learning Hackathon | Azure ML & YOLOv5 Pipeline</div>
 </header>
 
 <div class="container">
 
-<!-- Section 1: Azure Custom Vision -->
+    <!-- Section 1: Azure Custom Vision -->
     <div class="case-section">
         <h2><i class="fas fa-eye" style="color: var(--accent-blue);"></i> Phase 1: Azure Custom Vision</h2>
         <div class="grid-2">
             <div>
                 <h4>Initial Detection Baseline</h4>
-                <p>In the first phase, we established a baseline using <strong>Azure Custom Vision</strong>. The goal was to rapidly prototype a model capable of localizing structural defects in MoS₂ lattices.</p>
+                <p>Established a baseline using <strong>Azure Custom Vision</strong> to rapidly prototype a model capable of localizing structural defects in MoS₂ lattices.</p>
                 <ul>
                     <li><strong>ImageJ Integration:</strong> Converted manual labels into Azure-compatible coordinate formats.</li>
-                    <li><strong>Training Split:</strong> Implemented an 80/20 train-test split to ensure objective performance evaluation.</li>
+                    <li><strong>Training Split:</strong> Implemented an 80/20 train-test split for objective performance evaluation.</li>
                     <li><strong>Resource Management:</strong> Leveraged Azure cloud computing for efficient model iteration.</li>
                 </ul>
             </div>
             <div class="figure-container">
-                <!-- 請將剛才提供的截圖存為 assets/img/azure-metrics.png -->
+                <!-- 依要求使用 MAP.png -->
                 <img src="assets/img/MAP.png" alt="Azure Custom Vision Training Metrics">
                 <p class="figure-caption">Figure 1: Iteration 1 performance metrics from Azure Custom Vision, showing Precision, Recall, and mAP.</p>
             </div>
         </div>
     </div>
 
-    <!-- Section 2: YOLOv5 & Preprocessing -->
+    <!-- Section 2: Advanced Annotation with Roboflow -->
     <div class="case-section">
-        <h2><i class="fas fa-magic" style="color: var(--accent-purple);"></i> Phase 2: YOLOv5 & Preprocessing</h2>
+        <h2><i class="fas fa-tags" style="color: var(--accent-purple);"></i> Phase 2: Multiclass Labeling with Roboflow</h2>
+        <div class="grid-2">
+            <div>
+                <h4>Transition to YOLOv5 Architecture</h4>
+                <p>To differentiate specific types of defects, we transitioned to <strong>YOLOv5</strong> and used <strong>Roboflow</strong> for advanced multiclass annotation management.</p>
+                <ul>
+                    <li><strong>Defect Classification:</strong> Categorized defects into <i>Broken Region</i>, <i>Vacancy</i>, and <i>Replacement</i>.</li>
+                    <li><strong>Dataset Management:</strong> Roboflow enabled efficient handling of multiclass labels and exported them directly into YOLOv5 PyTorch format (.txt and .yaml).</li>
+                    <li><strong>Annotation Accuracy:</strong> Improved label consistency across the dataset, addressing the complexity of atomic-scale defect features.</li>
+                </ul>
+            </div>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 8px;">
+                <p style="font-size: 0.85rem; font-family: monospace; color: #1e293b;">
+                    # data.yaml Example<br>
+                    train: ../train/images<br>
+                    val: ../valid/images<br>
+                    nc: 3<br>
+                    names: ['Broken Region', 'Replacement', 'Vacancy']
+                </p>
+                <p class="figure-caption" style="margin-top: 15px;">Sample of the YOLOv5 configuration file generated via Roboflow.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Image Preprocessing -->
+    <div class="case-section">
+        <h2><i class="fas fa-magic" style="color: var(--accent-purple);"></i> Phase 3: Image Preprocessing</h2>
         <div class="grid-2">
             <div>
                 <h4>Enhancing Data Quality</h4>
-                <p>To improve detection of subtle atomic defects (Vacancy & Replacement), we applied professional image filters:</p>
+                <p>Applied professional image filters to the raw microscopy data to improve detection of subtle features:</p>
                 <ul>
-                    <li><strong>Gaussian & Median Filters:</strong> Reduced background noise from microscopy.</li>
-                    <li><strong>Contrast Adjustment:</strong> Increased clarity (~8.71 ratio) for atomic lattice observation.</li>
-                    <li><strong>"Ice" Color Map:</strong> Provided optimal visualization for defect contrast.</li>
+                    <li><strong>Gaussian & Median Filters:</strong> Effectively reduced background noise and instrumentation artifacts.</li>
+                    <li><strong>Contrast Optimization:</strong> Adjusted contrast (~8.71) to enhance the visibility of atomic vacancies.</li>
+                    <li><strong>"Ice" Color Map:</strong> Provided the most distinct visual contrast for deep learning feature extraction.</li>
                 </ul>
             </div>
             <div class="figure-container">
-                <!-- 放置 PDF 第 8 頁的 Before/After 比較圖 -->
-                <img src="assets/img/Image preprocessing.png" alt="Image Preprocessing Comparison">
-                <p class="figure-caption">Figure 1: Comparison between raw microscopy data and preprocessed images using Gaussian filters and color mapping.</p>
+                <img src="assets/img/preprocessing.jpg" alt="Image Preprocessing Comparison">
+                <p class="figure-caption">Figure 2: Comparison between raw microscopy data and preprocessed images for enhanced defect visibility.</p>
             </div>
         </div>
     </div>
 
-    <!-- Section 3: Intensity Profiles Verification -->
+    <!-- Section 4: Intensity Profiles Verification -->
     <div class="case-section">
-        <h2><i class="fas fa-chart-line" style="color: #ea580c;"></i> Technical Verification: Intensity Profiles</h2>
+        <h2><i class="fas fa-chart-line" style="color: #ea580c;"></i> Phase 4: Technical Verification</h2>
         <div class="grid-2">
             <div class="figure-container">
-                <!-- 放置 PDF 第 12 或 13 頁的曲線圖 -->
-                <img src="assets/img/Intensity Profile.png" alt="Intensity Profiles Verification">
-                <p class="figure-caption">Figure 2: Intensity line profiles used to verify model predictions against physical atomic intensity drops.</p>
+                <img src="assets/img/intensity-profiles.jpg" alt="Intensity Profiles Verification">
+                <p class="figure-caption">Figure 3: Intensity line profiles confirming model predictions against physical atomic data.</p>
             </div>
             <div>
                 <h4>Cross-Referencing Model Predictions</h4>
-                <p>To ensure model validity, we utilized <strong>Intensity Line Profiles</strong> to analyze the atomic lattice:</p>
+                <p>Verified deep learning results using <strong>Intensity Line Profiles</strong> (Nion Swift) to ensure physical validity:</p>
                 <ul>
-                    <li><strong>Broken Regions:</strong> Confirmed by near-zero intensity peaks in the profile.</li>
-                    <li><strong>Atomic Vacancies:</strong> Identified by specific periodic dips in intensity, matching theoretical Mo/S vacancy behaviors.</li>
-                    <li><strong>High Precision:</strong> This physical verification confirmed the model's high reliability in defect classification.</li>
+                    <li><strong>Broken Regions:</strong> Confirmed by significant and total intensity drops in the profile.</li>
+                    <li><strong>Atomic Vacancies:</strong> Verified by periodic, specific intensity dips corresponding to Mo/S atomic positions.</li>
+                    <li><strong>Robustness:</strong> This secondary physical verification proved that the YOLOv5 model accurately captured the intended chemical features.</li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- Section 4: Generalizability -->
+    <!-- Section 5: Generalizability -->
     <div class="case-section" style="border-left: 8px solid var(--accent-green);">
         <h2><i class="fas fa-microscope"></i> Model Generalizability</h2>
-        <p>The trained YOLOv5 model was tested on MoS₂ images sourced from <strong>Academic Literature</strong> (ACS Nano, Nano Letters). It successfully identified defects across different image sources and instrument settings, demonstrating robust generalizability for semiconductor process inspection.</p>
+        <p>The final model was evaluated using MoS₂ images sourced from peer-reviewed literature (ACS Nano, Nano Letters). It demonstrated a high ability to detect defects across unseen images from different experimental setups, proving its value as a generalized tool for semiconductor and material science inspection.</p>
     </div>
 
 </div>
