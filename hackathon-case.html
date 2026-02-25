@@ -13,7 +13,7 @@
             --accent-purple: #7c3aed;
             --accent-green: #059669;
             --text-main: #334155;
-            --text-muted: #64748b;
+            --text-muted: #475569; 
             --white: #ffffff;
             --border-color: #e2e8f0;
         }
@@ -26,7 +26,18 @@
         .nav-container a { color: #fff; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
 
         header { max-width: 1000px; margin: 50px auto 30px; padding: 0 25px; }
-        .badge { background: #ffc107; color: #000; padding: 5px 15px; font-weight: 800; font-size: 0.75rem; border-radius: 4px; display: inline-block; margin-bottom: 15px; }
+        .badge { 
+            background: #ffc107; 
+            color: #000; 
+            padding: 6px 16px; 
+            font-weight: 900; 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            border-radius: 4px; 
+            display: inline-block; 
+            margin-bottom: 15px; 
+            letter-spacing: 0.5px;
+        }
         h1 { font-size: 2.2rem; color: var(--primary-dark); line-height: 1.2; }
         .subtitle { font-size: 1.1rem; color: var(--accent-blue); font-weight: 600; margin-top: 10px; }
 
@@ -41,7 +52,7 @@
         li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.95rem; }
         li::before { content: "→"; position: absolute; left: 0; color: var(--accent-blue); font-weight: bold; }
 
-        .figure-container { margin-top: 10px; text-align: center; }
+        .figure-container { margin-top: 15px; text-align: center; }
         .figure-container img { 
             width: 100%; 
             height: auto; 
@@ -49,7 +60,15 @@
             border: 1px solid var(--border-color);
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        .figure-caption { font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; font-style: italic; }
+        .figure-caption { 
+            font-size: 0.95rem; 
+            color: var(--text-muted); 
+            margin-top: 12px; 
+            font-weight: 500;
+            line-height: 1.4;
+            letter-spacing: 0.2px;
+            display: block;
+        }
 
         @media (max-width: 850px) { .grid-2 { grid-template-columns: 1fr; } }
     </style>
@@ -70,7 +89,7 @@
 
 <div class="container">
 
-    <!-- Section 1: Azure Custom Vision -->
+    <!-- Phase 1: Azure Custom Vision -->
     <div class="case-section">
         <h2><i class="fas fa-eye" style="color: var(--accent-blue);"></i> Phase 1: Azure Custom Vision</h2>
         <div class="grid-2">
@@ -84,14 +103,13 @@
                 </ul>
             </div>
             <div class="figure-container">
-                <!-- 依要求使用 MAP.png -->
                 <img src="assets/img/MAP.png" alt="Azure Custom Vision Training Metrics">
-                <p class="figure-caption">Figure 1: Iteration 1 performance metrics from Azure Custom Vision, showing Precision, Recall, and mAP.</p>
+                <span class="figure-caption">Figure 1: Iteration 1 performance metrics from Azure Custom Vision, showing Precision, Recall, and mAP.</span>
             </div>
         </div>
     </div>
 
-    <!-- Section 2: Advanced Annotation with Roboflow -->
+    <!-- Phase 2: Multiclass Labeling with Roboflow -->
     <div class="case-section">
         <h2><i class="fas fa-tags" style="color: var(--accent-purple);"></i> Phase 2: Multiclass Labeling with Roboflow</h2>
         <div class="grid-2">
@@ -100,24 +118,24 @@
                 <p>To differentiate specific types of defects, we transitioned to <strong>YOLOv5</strong> and used <strong>Roboflow</strong> for advanced multiclass annotation management.</p>
                 <ul>
                     <li><strong>Defect Classification:</strong> Categorized defects into <i>Broken Region</i>, <i>Vacancy</i>, and <i>Replacement</i>.</li>
-                    <li><strong>Dataset Management:</strong> Roboflow enabled efficient handling of multiclass labels and exported them directly into YOLOv5 PyTorch format (.txt and .yaml).</li>
-                    <li><strong>Annotation Accuracy:</strong> Improved label consistency across the dataset, addressing the complexity of atomic-scale defect features.</li>
+                    <li><strong>Dataset Management:</strong> Managed multiclass labels and exported them directly into YOLOv5 PyTorch formats (.txt and .yaml).</li>
+                    <li><strong>Annotation Accuracy:</strong> Improved label consistency to better address the complexity of atomic-scale defect features.</li>
                 </ul>
             </div>
-            <div style="background: #f1f5f9; padding: 20px; border-radius: 8px;">
-                <p style="font-size: 0.85rem; font-family: monospace; color: #1e293b;">
+            <div style="background: #f1f5f9; padding: 25px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <p style="font-size: 0.9rem; font-family: 'Consolas', monospace; color: #1e293b; line-height: 1.6;">
                     # data.yaml Example<br>
                     train: ../train/images<br>
                     val: ../valid/images<br>
                     nc: 3<br>
                     names: ['Broken Region', 'Replacement', 'Vacancy']
                 </p>
-                <p class="figure-caption" style="margin-top: 15px;">Sample of the YOLOv5 configuration file generated via Roboflow.</p>
+                <span class="figure-caption">Sample of the YOLOv5 configuration file generated via Roboflow.</span>
             </div>
         </div>
     </div>
 
-    <!-- Section 3: Image Preprocessing -->
+    <!-- Phase 3: Image Preprocessing -->
     <div class="case-section">
         <h2><i class="fas fa-magic" style="color: var(--accent-purple);"></i> Phase 3: Image Preprocessing</h2>
         <div class="grid-2">
@@ -131,36 +149,37 @@
                 </ul>
             </div>
             <div class="figure-container">
+                <!-- 更新圖片名稱為 Image preprocessing.png -->
                 <img src="assets/img/Image preprocessing.png" alt="Image Preprocessing Comparison">
-                <p class="figure-caption">Figure 2: Comparison between raw microscopy data and preprocessed images for enhanced defect visibility.</p>
+                <span class="figure-caption">Figure 2: Comparison between raw microscopy data and preprocessed images for enhanced defect visibility.</span>
             </div>
         </div>
     </div>
 
-    <!-- Section 4: Intensity Profiles Verification -->
+    <!-- Phase 4: Technical Verification -->
     <div class="case-section">
         <h2><i class="fas fa-chart-line" style="color: #ea580c;"></i> Phase 4: Technical Verification</h2>
         <div class="grid-2">
             <div class="figure-container">
+                <!-- 更新圖片名稱為 Intensity Profile.png -->
                 <img src="assets/img/Intensity Profile.png" alt="Intensity Profiles Verification">
-                <p class="figure-caption">Figure 3: Intensity line profiles confirming model predictions against physical atomic data.</p>
+                <span class="figure-caption">Figure 3: Intensity line profiles used to confirm model predictions against physical atomic data.</span>
             </div>
             <div>
                 <h4>Cross-Referencing Model Predictions</h4>
                 <p>Verified deep learning results using <strong>Intensity Line Profiles</strong> (Nion Swift) to ensure physical validity:</p>
                 <ul>
-                    <li><strong>Broken Regions:</strong> Confirmed by significant and total intensity drops in the profile.</li>
+                    <li><strong>Broken Regions:</strong> Confirmed by significant and total intensity drops in the profile peaks.</li>
                     <li><strong>Atomic Vacancies:</strong> Verified by periodic, specific intensity dips corresponding to Mo/S atomic positions.</li>
-                    <li><strong>Robustness:</strong> This secondary physical verification proved that the YOLOv5 model accurately captured the intended chemical features.</li>
+                    <li><strong>Scientific Robustness:</strong> Secondary physical verification ensured the model accurately captured the intended chemical features.</li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- Section 5: Generalizability -->
     <div class="case-section" style="border-left: 8px solid var(--accent-green);">
         <h2><i class="fas fa-microscope"></i> Model Generalizability</h2>
-        <p>The final model was evaluated using MoS₂ images sourced from peer-reviewed literature (ACS Nano, Nano Letters). It demonstrated a high ability to detect defects across unseen images from different experimental setups, proving its value as a generalized tool for semiconductor and material science inspection.</p>
+        <p>The final model was evaluated using MoS₂ images from peer-reviewed literature. It demonstrated a high ability to detect defects across unseen images from different sources, proving its value as a generalized tool for semiconductor and material science inspection.</p>
     </div>
 
 </div>
