@@ -13,7 +13,7 @@
             --accent-purple: #7c3aed;
             --accent-green: #059669;
             --text-main: #334155;
-            --text-muted: #475569; 
+            --text-muted: #64748b; /* 恢復為較淡的灰色 */
             --white: #ffffff;
             --border-color: #e2e8f0;
         }
@@ -52,7 +52,8 @@
         li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.95rem; }
         li::before { content: "→"; position: absolute; left: 0; color: var(--accent-blue); font-weight: bold; }
 
-        .figure-container { margin-top: 15px; text-align: center; }
+        /* 圖表說明文字優化：使其低調且不搶戲 */
+        .figure-container { margin-top: 15px; text-align: left; }
         .figure-container img { 
             width: 100%; 
             height: auto; 
@@ -61,12 +62,11 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         .figure-caption { 
-            font-size: 0.95rem; 
-            color: var(--text-muted); 
-            margin-top: 12px; 
-            font-weight: 500;
-            line-height: 1.4;
-            letter-spacing: 0.2px;
+            font-size: 0.875rem; /* 縮小字體 */
+            color: var(--text-muted); /* 使用較淡的顏色 */
+            margin-top: 10px; 
+            font-weight: 400; /* 恢復正常字重，不要加粗 */
+            line-height: 1.5;
             display: block;
         }
 
@@ -123,14 +123,14 @@
                 </ul>
             </div>
             <div style="background: #f1f5f9; padding: 25px; border-radius: 8px; border: 1px solid #e2e8f0;">
-                <p style="font-size: 0.9rem; font-family: 'Consolas', monospace; color: #1e293b; line-height: 1.6;">
+                <p style="font-size: 0.875rem; font-family: 'Consolas', monospace; color: #475569; line-height: 1.6;">
                     # data.yaml Example<br>
                     train: ../train/images<br>
                     val: ../valid/images<br>
                     nc: 3<br>
                     names: ['Broken Region', 'Replacement', 'Vacancy']
                 </p>
-                <span class="figure-caption">Sample of the YOLOv5 configuration file generated via Roboflow.</span>
+                <span class="figure-caption" style="margin-top: 15px;">Sample of the YOLOv5 configuration file generated via Roboflow.</span>
             </div>
         </div>
     </div>
@@ -149,7 +149,6 @@
                 </ul>
             </div>
             <div class="figure-container">
-                <!-- 更新圖片名稱為 Image preprocessing.png -->
                 <img src="assets/img/Image preprocessing.png" alt="Image Preprocessing Comparison">
                 <span class="figure-caption">Figure 2: Comparison between raw microscopy data and preprocessed images for enhanced defect visibility.</span>
             </div>
@@ -161,7 +160,6 @@
         <h2><i class="fas fa-chart-line" style="color: #ea580c;"></i> Phase 4: Technical Verification</h2>
         <div class="grid-2">
             <div class="figure-container">
-                <!-- 更新圖片名稱為 Intensity Profile.png -->
                 <img src="assets/img/Intensity Profile.png" alt="Intensity Profiles Verification">
                 <span class="figure-caption">Figure 3: Intensity line profiles used to confirm model predictions against physical atomic data.</span>
             </div>
