@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Case Study | Tzu-Chun Huang</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --primary-dark: #1e293b;
+            --accent-blue: #0969da;
+            --accent-green: #059669;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; padding-bottom: 80px; }
+
+        nav { background: #1a1a1a; padding: 1rem; position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1000px; margin: 0 auto; }
+        .nav-container a { color: #fff; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+
+        header { max-width: 1000px; margin: 50px auto 30px; padding: 0 25px; text-align: left; }
+        .badge { background: #ffc107; color: #000; padding: 5px 15px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; border-radius: 4px; display: inline-block; margin-bottom: 15px; }
+        h1 { font-size: 2.2rem; color: var(--primary-dark); line-height: 1.2; margin-bottom: 10px; }
+        .subtitle { font-size: 1.1rem; color: var(--accent-blue); font-weight: 600; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 25px; }
+
+        /* Sections */
+        .case-section { background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 35px; margin-bottom: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        h2 { font-size: 1.3rem; margin-bottom: 20px; color: var(--primary-dark); display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--bg-color); padding-bottom: 10px; }
+        
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        
+        .tech-tag { background: #eff6ff; color: #1d4ed8; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-right: 8px; margin-bottom: 8px; display: inline-block; }
+
+        ul { list-style: none; }
+        li { position: relative; padding-left: 20px; margin-bottom: 10px; text-align: left; }
+        li::before { content: "→"; position: absolute; left: 0; color: var(--accent-blue); font-weight: bold; }
+
+        .metric-card { background: #f1f5f9; padding: 20px; border-radius: 8px; text-align: center; }
+        .metric-value { font-size: 1.5rem; font-weight: 800; color: var(--accent-blue); }
+        .metric-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; }
+
+        .code-box { background: #1e293b; color: #e2e8f0; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 0.85rem; overflow-x: auto; margin-top: 10px; }
+
+        /* Images placeholder */
+        .img-placeholder { background: #e2e8f0; width: 100%; height: 200px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-style: italic; margin-top: 15px; }
+        .img-placeholder img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <a href="index.html#projects"><i class="fas fa-arrow-left"></i> BACK TO PORTFOLIO</a>
+    </div>
+</nav>
+
+<header>
+    <span class="badge"><i class="fas fa-trophy"></i> Awarded 1st Place</span>
+    <h1>Defect Identification and Classification Using YOLOv5 and Azure Machine Learning</h1>
+    <div class="subtitle">Hackathon Project | University of Washington E-Science Institute</div>
+</header>
+
+<div class="container">
+
+    <!-- Overview -->
+    <div class="case-section">
+        <h2><i class="fas fa-info-circle"></i> Project Objective</h2>
+        <div class="grid-2">
+            <div>
+                <p>The goal was to accurately detect and localize defects in MoS₂ (Molybdenum disulfide) images and classify them into multiple categories using deep learning.</p>
+                <div style="margin-top: 20px;">
+                    <span class="tech-tag">Azure ML</span>
+                    <span class="tech-tag">YOLOv5</span>
+                    <span class="tech-tag">Roboflow</span>
+                    <span class="tech-tag">ImageJ</span>
+                    <span class="tech-tag">Python</span>
+                </div>
+            </div>
+            <div>
+                <ul>
+                    <li><strong>Object Detection:</strong> Localize defects by drawing bounding boxes.</li>
+                    <li><strong>Classification:</strong> Identify defect types (Broken Region, Vacancy, Replacement).</li>
+                    <li><strong>Preprocessing:</strong> Enhance raw microscopy images for higher accuracy.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pipeline -->
+    <div class="case-section">
+        <h2><i class="fas fa-layer-group"></i> Methodology & Pipeline</h2>
+        <div class="grid-2">
+            <div>
+                <h4>1. Data Preparation</h4>
+                <p>Used <strong>ImageJ</strong> for initial labeling and <strong>Roboflow</strong> to generate annotation files (.txt) readable by YOLOv5.</p>
+                <div class="code-box">
+                    # YAML Configuration Snippet<br>
+                    nc: 3<br>
+                    names: ['Broken Region', 'Replacement', 'Vacancy']
+                </div>
+            </div>
+            <div>
+                <h4>2. Model Training</h4>
+                <p>Trained a multiclass classification model using <strong>Azure Machine Learning</strong> resources, leveraging YOLOv5's architecture for high-speed detection.</p>
+                <div class="img-placeholder">
+                    <img src="assets/img/MAP.png" alt="Performance Metrics">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Evaluation -->
+    <div class="case-section">
+        <h2><i class="fas fa-chart-line"></i> Performance Analysis</h2>
+        <div class="grid-2">
+            <div>
+                <h4>Model Limitations</h4>
+                <ul>
+                    <li><strong>F1 Score:</strong> 0.344 (Initial iteration)</li>
+                    <li><strong>Human Error:</strong> Subjective labeling in noisy images.</li>
+                    <li><strong>Small Dataset:</strong> Need for more diverse samples.</li>
+                    <li><strong>Label Purity:</strong> Vacancy and Replacement labels tend to overlap.</li>
+                </ul>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="metric-card"><div class="metric-value">83.2%</div><div class="metric-label">Precision</div></div>
+                <div class="metric-card"><div class="metric-value">79.7%</div><div class="metric-label">Recall</div></div>
+                <div class="metric-card" style="grid-column: span 2;"><div class="metric-value">78.6%</div><div class="metric-label">mAP (Mean Average Precision)</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preprocessing & Verification -->
+    <div class="case-section">
+        <h2><i class="fas fa-vial"></i> Preprocessing & Verification</h2>
+        <div class="grid-2">
+            <div>
+                <h4>Image Preprocessing</h4>
+                <p>Applied various filters to enhance defect visibility:</p>
+                <ul>
+                    <li><strong>Filters:</strong> Gaussian, Median, and Uniform filters.</li>
+                    <li><strong>Color Mapping:</strong> "Ice" map for better contrast (~8.71 contrast ratio).</li>
+                </ul>
+                <div class="img-placeholder">
+                    <!-- Before/After Image from Slide 8 -->
+                    <img src="assets/img/Hackathon 示意.jpg" alt="Preprocessing Comparison">
+                </div>
+            </div>
+            <div>
+                <h4>Verification via Intensity Plot</h4>
+                <p>To verify model predictions, <strong>Intensity Line Profiles</strong> were generated. The peaks and valleys in the intensity plot accurately confirmed the presence of broken regions versus vacancies.</p>
+                <div class="img-placeholder">
+                    <!-- Plot from Slide 11/12 -->
+                    <span>[Intensity Plot Visualization]</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conclusion -->
+    <div class="case-section" style="border-left: 8px solid var(--accent-green);">
+        <h2><i class="fas fa-check-double"></i> Conclusions & Future Improvements</h2>
+        <div class="grid-2">
+            <div>
+                <p>The model successfully detected and classified different types of defects even in images sourced from literature, proving its generalizability.</p>
+            </div>
+            <div>
+                <ul>
+                    <li>Incorporate more background images to reduce false positives.</li>
+                    <li>Use data augmentation to expand the small dataset.</li>
+                    <li>Apply secondary verification using intensity profiles for edge cases.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <div style="text-align: center; color: var(--text-muted); padding: 20px;">
+        &copy; 2026 Tzu-Chun Huang | Project Group 6 Tapioca
+    </div>
+</footer>
+
+</body>
+</html>
