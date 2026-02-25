@@ -263,6 +263,25 @@
             box-shadow: 4px 4px 0px var(--industrial-gray);
         }
 
+        /* 影片容器樣式，維持原本 project-img 的尺寸規範 */
+        .video-wrapper {
+            max-width: 350px;
+            width: 100%;
+            position: relative;
+            padding-bottom: 196.88px; /* 350px 寬度時約 16:9 的高度 */
+            height: 0;
+            border: 1px solid var(--border-color);
+            box-shadow: 4px 4px 0px var(--industrial-gray);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
         .card-title-group h3 { font-size: 1.5rem; font-weight: bold; color: var(--primary-dark); }
         .card-subtitle { font-size: 1.15rem; color: var(--accent-blue); font-weight: bold; margin-top: 4px; }
 
@@ -335,6 +354,7 @@
             header { flex-direction: column; text-align: center; gap: 30px; }
             .card-header { flex-direction: column; align-items: flex-start; }
             .card-logo { height: 80px; object-position: left; }
+            .video-wrapper { max-width: 100%; padding-bottom: 56.25%; } /* 手機版全寬顯示影片 */
         }
 
         @media (max-width: 768px) {
@@ -481,7 +501,6 @@
         <div class="card-header">
             <div class="card-title-group">
                 <h3>Hackathon - Defect Identification and Classification Using YOLOv5 and Azure Machine Learning</h3>
-                <!-- 加入這個按鈕 -->
                 <div style="margin-top: 15px;">
                     <a href="hackathon-case.html" target="_blank" style="background: var(--accent-blue); color: white; padding: 6px 16px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: bold; display: inline-block;">
                         <i class="fas fa-external-link-alt"></i> VIEW FULL WORK
@@ -529,7 +548,16 @@
                 <div class="card-title-group">
                     <h3>2019 International Top University Regatta</h3>
                 </div>
-                <img src="assets/img/帆船.jpg" alt="WS" class="project-img">
+                <!-- 將原本的 <img> 替換為 YouTube 影片嵌入 -->
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://youtu.be/XnYbjyYR1QE" 
+                        title="2019 International Top University Regatta" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
             </div>
             <div class="card-content">
                 <ul>
@@ -548,7 +576,3 @@
 
 </body>
 </html>
-
-
-
-
