@@ -77,24 +77,26 @@
 
 <div class="container">
 
-    <!-- Section 1: Azure Custom Vision -->
+<!-- Section 1: Azure Custom Vision -->
     <div class="case-section">
         <h2><i class="fas fa-eye" style="color: var(--accent-blue);"></i> Phase 1: Azure Custom Vision</h2>
         <div class="grid-2">
             <div>
-                <p>Initial implementation using <strong>Azure Custom Vision</strong> for rapid object detection. The model localized general defect regions using bounding boxes.</p>
-                <div class="metrics-grid">
-                    <div class="metric-box"><span class="metric-val">83.2%</span><span class="metric-label">Precision</span></div>
-                    <div class="metric-box"><span class="metric-val">79.7%</span><span class="metric-label">Recall</span></div>
-                    <div class="metric-box"><span class="metric-val">78.6%</span><span class="metric-label">mAP</span></div>
+                <h4>Initial Detection Baseline</h4>
+                <p>In the first phase, we established a baseline using <strong>Azure Custom Vision</strong>. The goal was to rapidly prototype a model capable of localizing structural defects in MoS₂ lattices.</p>
+                <ul>
+                    <li><strong>ImageJ Integration:</strong> Converted manual labels into Azure-compatible coordinate formats.</li>
+                    <li><strong>Training Split:</strong> Implemented an 80/20 train-test split to ensure objective performance evaluation.</li>
+                    <li><strong>Resource Management:</strong> Leveraged Azure cloud computing for efficient model iteration.</li>
+                </ul>
+                <div class="highlight-box" style="background: #eff6ff; color: #1e40af; border-left: 4px solid var(--accent-blue); margin-top: 15px;">
+                    <i class="fas fa-chart-line"></i> <strong>Performance Summary:</strong> The model achieved high precision (83.2%) in initial structural defect localization.
                 </div>
             </div>
-            <div>
-                <ul>
-                    <li>ImageJ labeling to ACV format conversion.</li>
-                    <li>Iterative training with Azure cloud resources.</li>
-                    <li>Successful detection of structural "defects".</li>
-                </ul>
+            <div class="figure-container">
+                <!-- 放置你剛才提供的截圖，建議存為 azure-metrics.png -->
+                <img src="assets/img/MAP.png" alt="Azure Custom Vision Training Metrics">
+                <p class="figure-caption">Figure 1: Iteration 1 performance metrics from Azure Custom Vision, showing balanced Precision, Recall, and mAP.</p>
             </div>
         </div>
     </div>
