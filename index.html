@@ -1,3 +1,5 @@
+--- START OF FILE Paste February 26, 2026 - 12:40PM ---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -405,6 +407,32 @@
             width: 100%;
         }
 
+        /* 回到頂端按鈕樣式 */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none; /* 預設隱藏 */
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        #backToTop:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
         @media (max-width: 850px) {
             header { flex-direction: column; text-align: center; gap: 30px; }
             .card-header { flex-direction: column; align-items: flex-start; }
@@ -417,6 +445,7 @@
             .contact-info { justify-content: center; }
             .nav-container a { padding: 10px 10px; font-size: 0.75rem; }
             .btn-cta { width: 100%; justify-content: center; }
+            #backToTop { bottom: 20px; right: 20px; width: 45px; height: 45px; }
         }
     </style>
 </head>
@@ -658,35 +687,55 @@
 
 </div>
 
+<!-- 回到頂端按鈕 -->
+<button id="backToTop" title="Go to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
 <footer>
     &copy; 2026 Tzu-Chun Huang. All rights reserved.
 </footer>
 
-<!-- 複製 Email 的腳本 -->
 <script>
+    // 複製 Email 的功能
     function copyEmail() {
         const email = "tzuchunapply@gmail.com";
         const btn = document.getElementById('emailBtn');
         const originalText = btn.innerHTML;
 
         navigator.clipboard.writeText(email).then(() => {
-            // 點擊後改變按鈕文字作為反饋
             btn.innerHTML = '<i class="fas fa-check"></i> Email Copied!';
-            btn.style.backgroundColor = "#28a745"; // 變成綠色
+            btn.style.backgroundColor = "#28a745"; 
 
-            // 2秒後恢復原狀
             setTimeout(() => {
                 btn.innerHTML = originalText;
-                btn.style.backgroundColor = ""; // 恢復 CSS 定義的顏色
+                btn.style.backgroundColor = ""; 
             }, 2000);
         }).catch(err => {
             console.error('Could not copy email: ', err);
         });
     }
+
+    // 回到頂端按鈕功能
+    const backToTopBtn = document.getElementById("backToTop");
+
+    window.onscroll = function() {
+        // 當滾動超過 300px 時顯示按鈕
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            backToTopBtn.style.display = "flex";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    };
+
+    backToTopBtn.addEventListener("click", () => {
+        // 平滑滾動回到最上方
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
 </script>
 
 </body>
 </html>
-
-
-
